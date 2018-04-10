@@ -10,22 +10,32 @@ const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
+    <div id="admin-signin">
+      <img id="admin-logo" src="/images/mainlogo.png" />
+      <div id="admin-portal-title"> ADMIN PORTAL </div>
+      <div className="boundry-message">
+        This login is for admins of the site.
+        If you are not an admin, please use the link below to return home.
+        Thank you!
         <div>
-          <label htmlFor="email"><small>Email</small></label>
+          <a href="/"> return home </a>
+        </div>
+      </div>
+      <form id="auth-form" onSubmit={handleSubmit} name={name}>
+        <div>
+          <label className="login-label" htmlFor="email"><small>Email</small></label>
           <input name="email" type="text" />
         </div>
         <div>
-          <label htmlFor="password"><small>Password</small></label>
+          <label className="login-label" htmlFor="password"><small>Password</small></label>
           <input name="password" type="password" />
         </div>
+        {error && error.response && <div className="boundry-message"> {error.response.data} </div>}
         <div>
-          <button type="submit">{displayName}</button>
+          <button id="login-button" type="submit">{displayName}</button>
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      {/* <a id="google-button" href="/auth/google">{displayName} with Google</a> */}
     </div>
   )
 }

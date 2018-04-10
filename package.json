@@ -1,5 +1,5 @@
 {
-  "name": "boilermaker",
+  "name": "kstruve",
   "version": "1.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
   "engines": {
@@ -19,7 +19,7 @@
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require @babel/polyfill --require @babel/register"
   },
-  "author": "Fullstack Academy of Code",
+  "author": "Jake Johnson",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
@@ -28,6 +28,8 @@
     "connect-session-sequelize": "^4.1.0",
     "express": "^4.14.1",
     "express-session": "^1.15.1",
+    "firebase": "^4.12.1",
+    "firebase-admin": "^5.11.0",
     "history": "^4.6.3",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
@@ -36,12 +38,15 @@
     "pg-hstore": "^2.3.2",
     "prop-types": "^15.5.8",
     "react": "^16.0.0",
+    "react-core-image-upload": "^2.2.3",
     "react-dom": "^16.0.0",
+    "react-parallax": "^1.6.1",
     "react-redux": "^5.0.2",
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
+    "semantic-ui-react": "^0.77.2",
     "sequelize": "^4.3.1",
     "socket.io": "^2.0.3"
   },
@@ -62,6 +67,7 @@
     "eslint-config-fullstack": "^3.0.0",
     "eslint-plugin-react": "^7.4.0",
     "husky": "^0.14.3",
+    "lodash": "^4.17.4",
     "mocha": "^3.3.0",
     "nodemon": "^1.12.1",
     "react-test-renderer": "^16.0.0",

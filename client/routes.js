@@ -2,34 +2,65 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
-import {me} from './store'
+import {
+  Login,
+  Signup,
+  UserHome,
+  Lander,
+  Artists,
+  Catalogs,
+  Category,
+  Contact,
+  AllProducts,
+  ProductDetail,
+  AdminAddProduct,
+  AdminAddArtist,
+  ArtistDetail,
+  Home
+} from './components'
+import SearchBar from './components/search'
+import { me, fetchArtists, fetchCategories, fetchProducts} from './store'
+import firebase from '../server/firebase'
 
-/**
- * COMPONENT
- */
+
 class Routes extends Component {
   componentDidMount () {
-    this.props.loadInitialData()
+    const {loadInitialData} = this.props
+    const artistsThunk = fetchArtists()
+    const categoryThunk = fetchCategories()
+    const productsThunk = fetchProducts();
+    loadInitialData()
   }
 
   render () {
     const {isLoggedIn} = this.props
+    // const {isLoggedIn, userId, setActiveCart, setDefaultCart} = this.props
+
+    let cookie = Number(document.cookie.slice(document.cookie.lastIndexOf('=') + 1))
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/artists" component={Artists} />
+        <Route exact path="/artists/:id" component={ArtistDetail} />
+        <Route exact path="/products" component={AllProducts} />
+        <Route exact path="/products/:id" component={ProductDetail} />
+        <Route exact path="/catalogsbooksandprints" component={AllProducts} />
+        <Route exact path="/contact" component={Contact} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/category/:id" component={Category} />
         {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
+              <Route exact path="/adminaddproduct" component={AdminAddProduct} />
+              <Route exact path="/adminaddartist" component={AdminAddArtist} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Home} />
       </Switch>
     )
   }
@@ -50,9 +81,13 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(fetchArtists())
+      dispatch(fetchProducts())
+      dispatch(fetchCategories())
     }
   }
 }
+
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
