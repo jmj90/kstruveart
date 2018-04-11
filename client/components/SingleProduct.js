@@ -60,6 +60,7 @@ class SingleProduct extends Component {
     const { product } = this.props;
     return (
       <div>
+        {console.log('updated again')}
         <div id="deletion-confirm-window">
           <div className="deletion-alert">
             <div id="deletion-question"> ARE YOU SURE YOU WANT TO REMOVE THIS PRODUCT? </div>
@@ -80,11 +81,24 @@ class SingleProduct extends Component {
               <div className="product-description">
                 { product.description.slice(0,120) + '...' }
               </div>
-          {
-            product.inventory > 0 ? <div className="product-card-price">${+product.price / 100}</div>
-            :
-            <div id="productPrice">SOLD OUT</div>
-          }
+              {
+                Number(product.price) === 0 ?
+                <div className="product-view-price">Contact For Price</div>
+                :
+                <div />
+              }
+              {
+                product.isSold ?
+                <div className="product-view-price">SOLD</div>
+                :
+              <div />
+              }
+              {
+                Number(product.price) !== 0 && !(product.isSold) ?
+                <div className="product-view-price">${+product.price / 100}</div>
+                :
+                <div />
+              }
         </div>
           { this.props.user.isAdmin ?
             (

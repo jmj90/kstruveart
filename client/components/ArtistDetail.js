@@ -246,7 +246,8 @@ getProducts() {
             </div>
 
               {/*   A R T I S T   P R O D U C T S  / A R T W O R K   A R E A   */}
-              <div className="title">Artist Items</div>
+              <div className="title">Artists Items</div>
+
 
             {
               this.props.products && this.props.artistselected ?
@@ -263,13 +264,26 @@ getProducts() {
                     </div>
                   </Link>
                     <div className="artist-product-description">
-                      { product.description.slice(0,120) + '...' }
+                      { product.description.slice(0, 120) + '...' }
                     </div>
-                {
-                  product.inventory > 0 ? <div className="artist-product-card-price">${+product.price / 100}</div>
-                  :
-                  <div id="artist-product-price">SOLD OUT</div>
-                }
+                    {
+                      Number(product.price) === 0 ?
+                      <div className="product-view-price">Contact For Price</div>
+                      :
+                      <div />
+                    }
+                    {
+                      product.isSold ?
+                      <div className="product-view-price">SOLD</div>
+                      :
+                    <div />
+                    }
+                    {
+                      Number(product.price) !== 0 && !(product.isSold) ?
+                      <div className="product-view-price">${+product.price / 100}</div>
+                      :
+                      <div />
+                    }
               </div>
                 { this.props.user.isAdmin ?
                   (

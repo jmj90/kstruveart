@@ -17,12 +17,14 @@ class ProductDetail extends Component {
       super(props);
       this.state = {
         selectedFile: 0,
-        storageRef: 0
+        storageRef: 0,
+        isSoldToggle: 0
       }
       this.editProductDetails = this.editProductDetails.bind(this);
       this.removeProduct = this.removeProduct.bind(this)
       this.addToCart = this.addToCart.bind(this)
       this.uploadProductPhoto = this.uploadProductPhoto.bind(this)
+      this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   // ==================== I M A G E  U P L O A D E R ==================== //
@@ -73,6 +75,8 @@ class ProductDetail extends Component {
 
   // ========================================================================== //
 
+
+
   enterpressalert(e){
     var code = e.keyCode || e.which
     if (code == 13) {
@@ -82,9 +86,12 @@ class ProductDetail extends Component {
 
 
   render() {
+
     const {product} = this.props
+
     return (
       <div>
+        {console.log('44444')}
         <Nav />
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
@@ -117,10 +124,22 @@ class ProductDetail extends Component {
                           {product.producttype}
                         </div>
                         {
+                          Number(product.price) === 0 ?
+                          <div className="product-view-price">Contact For Price</div>
+                          :
+                          <div />
+                        }
+                        {
                           product.isSold ?
                           <div className="product-view-price">SOLD</div>
                           :
+                        <div />
+                        }
+                        {
+                          Number(product.price) !== 0 && !(product.isSold) ?
                           <div className="product-view-price">${+product.price / 100}</div>
+                          :
+                          <div />
                         }
                         {
                           product.inventory ?
@@ -170,6 +189,21 @@ class ProductDetail extends Component {
                      <input name="price" type="number" type="decimal" defaultValue={product.price/100} />
                      <label>Inventory</label>
                      <input name="inventory" type="number" defaultValue={product.inventory} />
+                     <label>Sold:</label>
+                      <select className="add-product-form-inputs" required name="isSoldSelect" type="text">
+                        {
+                          product.isSold ?
+                            <option selected>TRUE</option>
+                          :
+                            <option selected>FALSE</option>
+                        }
+                        {
+                          product.isSold ?
+                            <option>FALSE</option>
+                          :
+                            <option>TRUE</option>
+                        }
+                      </select>
                      <label>Image Url</label>
                      <input name="photoURL" type="text" defaultValue={product.photo} />
                   <div className="edit-product-buttons">
@@ -222,11 +256,24 @@ class ProductDetail extends Component {
         description: event.target.desc.value,
         price: (event.target.price.value * 100),
         inventory: event.target.inventory.value,
+        isSold: event.target.isSoldSelect.value,
         photo: window.imageURLForProduct
       }
     )
     this.props.updateProduct(updatedproduct);
     window.location.reload()
+  }
+
+  handleInputChange(event) {
+    let toggle = this.state.isSoldToggle
+    if (toggle === 0 || false){
+      console.log('sold toggle set to true')
+      this.setState({isSoldToggle: true})
+    } else {
+      console.log('sold toggle set to false')
+      this.setState({isSoldToggle: false})
+    }
+
   }
 
   // ========= Admin: Create Category ========= \\

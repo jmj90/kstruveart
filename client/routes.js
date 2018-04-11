@@ -46,7 +46,7 @@ class Routes extends Component {
         <Route exact path="/artists/:id" component={ArtistDetail} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:id" component={ProductDetail} />
-        <Route exact path="/catalogsbooksandprints" component={AllProducts} />
+        <Route exact path="/allproducts" component={AllProducts} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />

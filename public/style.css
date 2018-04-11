@@ -206,7 +206,7 @@ form div {
   border-color: black;
   border-style: solid;
   border-width: thin;
-  max-width: 60%;
+  min-width: 50%;
   margin: 1rem;
   padding: 1rem;
 }
@@ -481,11 +481,31 @@ form div {
       justify-content: space-around;
     }
 
+    .artist-product-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
     .artist-view-image {
       min-width: 400px;
       height: 400px;
       object-fit: contain;
-      margin-right: 3rem;
+      margin-right: 2rem;
+      margin-left: 2rem;
+    }
+
+    .artist-product-title{
+      font-size: 22px;
+      margin-bottom: 1rem;
+    }
+    .artist-product-description {
+      font-size: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .artist-product-card-price {
+      font-size: 18px;
     }
 
     .artist-name-bio {
@@ -528,8 +548,6 @@ form div {
 
     .product-view-price {
       font-size: 16px;
-      font-weight: bold;
-      color: green;
     }
 
     .product-view-desc {

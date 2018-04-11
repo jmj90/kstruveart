@@ -192,7 +192,6 @@ componentDidMount() {
                             <label className="form-label"> Category: </label>
                             <select className="add-product-form-inputs"  name="categorySelect" type="text" placeholder="select an artist">
                               <option selected="selected" disabled> Choose one </option>
-                              <option value="none">None</option>
                               {
                                 this.props.category.map(cat => <option key={cat.id} value={cat.id}>{cat.title}</option>)
                               }

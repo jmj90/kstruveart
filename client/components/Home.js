@@ -10,7 +10,7 @@ class Home extends Component {
         <img id="lander-navlogo" src="/images/mainlogo2.png" />
         <div className="lander-nav">
           <a href="/artists"  className="Nav-Item"> artists </a>
-          <a href="/catalogsbooksandprints" className="Nav-Item"> catalogs & books </a>
+          <a href="/allproducts" className="Nav-Item"> artwork </a>
           {/*<Link to="/prints" className="Nav-Item"> prints </Link>*/}
           <a href="/contact" className="Nav-Item"> contact </a>
         </div>
