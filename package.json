@@ -8,6 +8,9 @@
     "build-client-watch": "webpack -w",
     "deploy": "script/deploy",
     "lint": "eslint ./ --ignore-path .gitignore",
+    "production": {
+      "use_env_variable": "DATABASE_URL"
+    },
     "postinstall": "touch secrets.js",
     "seed": "node script/seed.js",
     "start": "node server",
