@@ -4,7 +4,6 @@ import { Search, Grid, Header, Label} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import history from '../history'
-import faker from 'faker'
 import PropTypes from 'prop-types'
 
 class SearchBar extends Component {

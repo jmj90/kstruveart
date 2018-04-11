@@ -1,7 +1,5 @@
 import firebase from 'firebase'
 
-// import admin from 'firebase-admin';
-
 const FIREBASE_SECRET = process.env.FIREBASE_SECRET
 
 var config = {
@@ -13,17 +11,6 @@ var config = {
   messagingSenderId: "121487753961"
 };
 firebase.initializeApp(config);
-
-
-// admin.initializeApp({
-//   credential: admin.credential.cert({
-//    projectId: 'kstruve-fineart',
-//    clientEmail: 'jakej.dev@gmail.com',
-//    privateKey: FIREBASE_SECRET
-//  }),
-//   databaseURL: "https://kstruve-fineart.firebaseio.com"
-// });
-
 
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const auth = firebase.auth();

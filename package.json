@@ -1,10 +1,7 @@
 {
   "name": "kstruve",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
-  "engines": {
-    "node": ">= 7.0.0"
-  },
+  "description": "kstruve fine art website",
   "main": "index.js",
   "scripts": {
     "build-client": "webpack",
@@ -15,8 +12,8 @@
     "seed": "node script/seed.js",
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
-    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
-    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/kstruve' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require @babel/polyfill --require @babel/register"
+    "start-server": "nodemon server -e html,js,scss --ignore public",
+    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/kstruve-test'  mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
   },
   "author": "Jake Johnson",
   "license": "MIT",
