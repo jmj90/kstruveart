@@ -2,7 +2,6 @@ const User = require('./user')
 const Artist = require('./artist')
 const Artwork = require('./artwork')
 const ArtistStyleCategory = require('./artistStyleCategory')
-const ArtworkStyleCategory = require('./artworkStyleCategory')
 const Product = require('./product')
 
 /**
@@ -21,13 +20,10 @@ Artist.hasMany(Product)
 
 ArtistStyleCategory.hasMany(Artist)
 
-ArtworkStyleCategory.hasMany(Artwork)
-
 module.exports = {
   User,
   Artwork,
   Artist,
   Product,
-  ArtistStyleCategory,
-  ArtworkStyleCategory
+  ArtistStyleCategory
 }
