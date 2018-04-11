@@ -2,6 +2,10 @@
   "name": "kstruve",
   "version": "1.0.0",
   "description": "kstruve fine art website",
+  "engines": {
+  "node": "5.0.0",
+  "npm": "4.6.1"
+  },
   "main": "index.js",
   "scripts": {
     "build-client": "webpack",
