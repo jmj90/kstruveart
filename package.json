@@ -1,17 +1,14 @@
 {
   "name": "kstruve",
   "version": "1.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
-  "engines": {
-    "node": "5.0.0",
-    "npm": "4.6.1"
-  },
+  "description": "kstruve",
   "main": "index.js",
   "scripts": {
     "build-client": "webpack",
     "build-client-watch": "webpack -w",
     "deploy": "script/deploy",
     "lint": "eslint ./ --ignore-path .gitignore",
+    "prepush": "npm run lint && npm test",
     "postinstall": "touch secrets.js",
     "seed": "node script/seed.js",
     "start": "node server",
@@ -23,7 +20,6 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
-    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.16.1",
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
@@ -52,14 +48,15 @@
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
-    "babel-core": "^6.22.1",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/polyfill": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40",
+    "@babel/preset-stage-2": "^7.0.0-beta.40",
+    "@babel/register": "^7.0.0-beta.40",
+    "axios-mock-adapter": "^1.9.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^8.0.0-beta.2",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-react": "^6.22.0",
-    "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.24.1",
-    "axios-mock-adapter": "^1.9.0",
     "chai": "^3.5.0",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
