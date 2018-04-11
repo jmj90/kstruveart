@@ -1,10 +1,10 @@
 {
   "name": "kstruve",
   "version": "1.0.0",
-  "description": "kstruve fine art website",
+  "description": "Some boilerplate code to get you started - get shakin'!",
   "engines": {
-  "node": "5.0.0",
-  "npm": "4.6.1"
+    "node": "5.0.0",
+    "npm": "4.6.1"
   },
   "main": "index.js",
   "scripts": {
@@ -16,13 +16,14 @@
     "seed": "node script/seed.js",
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
-    "start-server": "nodemon server -e html,js,scss --ignore public",
-    "test": "NODE_ENV='test' DATABASE_URL='postgres://localhost:5432/kstruve-test'  mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --compilers js:babel-register"
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
+    "test": "NODE_ENV='test' mocha ./server/**/*.spec.js ./server/**/**/*.spec.js ./client/**/*.spec.js --require @babel/polyfill --require @babel/register"
   },
   "author": "Jake Johnson",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.16.1",
     "compression": "^1.7.1",
     "connect-session-sequelize": "^4.1.0",
@@ -51,15 +52,14 @@
     "socket.io": "^2.0.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.40",
-    "@babel/polyfill": "^7.0.0-beta.40",
-    "@babel/preset-env": "^7.0.0-beta.40",
-    "@babel/preset-react": "^7.0.0-beta.40",
-    "@babel/preset-stage-2": "^7.0.0-beta.40",
-    "@babel/register": "^7.0.0-beta.40",
-    "axios-mock-adapter": "^1.9.0",
+    "babel-core": "^6.22.1",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^8.0.0-beta.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.22.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "axios-mock-adapter": "^1.9.0",
     "chai": "^3.5.0",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
