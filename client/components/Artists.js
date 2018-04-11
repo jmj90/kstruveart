@@ -36,12 +36,14 @@ class Artists extends Component {
           categoryId ?
           artist.filter(singleartist => singleartist.artistStyleCategoryId === categoryId).map(singleartist =>
             <div key={singleartist.id} className="artist-tile">
+              <a href={`/artists/${singleartist.id}`}>
               <div id="artist-title-bar-name-photo">
                 <div className="artist-name-list">
                   {`${singleartist.firstname} ${singleartist.lastname}`}
                 </div>
                 <img id="artist-photo-list" src={singleartist.stylePhoto} />
               </div>
+            </a>
               <div className="artist-bio-list">
                 {singleartist.biography}
               </div>
