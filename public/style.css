@@ -47,6 +47,26 @@ form div {
   display: inline-block;
 }
 
+#offline-lander {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#offline-header {
+  font-size: 18px;
+  font-weight: bold;
+  color: #456d9b;
+  margin-bottom: 2rem;
+}
+
+#navlogo-offline {
+  max-height: 20px;
+  margin-bottom: 3rem;
+}
+
 .title {
   font-family: "Geneva";
   font-size: 1.5rem;
