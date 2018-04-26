@@ -139,6 +139,9 @@ getProducts() {
 
 
   render() {
+    const numberWithCommas = (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     const {category, artistselected} = this.props
     return (
       <div>
@@ -280,7 +283,7 @@ getProducts() {
                     }
                     {
                       Number(product.price) !== 0 && !(product.isSold) ?
-                      <div className="product-view-price">${+product.price / 100}</div>
+                      <div className="product-view-price">${numberWithCommas(product.price / 100)}</div>
                       :
                       <div />
                     }

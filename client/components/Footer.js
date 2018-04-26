@@ -14,18 +14,17 @@ let Footer = ({ handleClick, isLoggedIn }) => {
   <div id="footer">
         <div className="footer-nav">
           <a href="/artists"  className="Nav-Item"> artists </a>
-          <a href="/catalogsbooksandprints" className="Nav-Item"> catalogs & books </a>
-          {/* <Link to="/prints" className="Nav-Item"> prints </Link> */}
+          <a href="/allproducts" className="Nav-Item"> artwork </a>
           <a href="/contact" className="Nav-Item"> contact </a>
         </div>
         <div id="footer-address"> 540 W Webster Ave, Suite 1111 | Chicago, IL 60614 | 312.560.4634 </div>
-        <div id="footer-address"> [visits by appointment only] </div>
+        <div id="footer-address"> [by appointment only] </div>
         <div id="admin-login-container">
         {
           isLoggedIn ? (
             <div>
-              <a href="/" className="Nav-Item">Home</a>
-              <a className="Nav-Item" href="#" onClick={handleClick}>
+              <a href="/" className="Nav-Item-admin">Home</a>
+              <a className="Nav-Item-admin" href="#" onClick={handleClick}>
                 Logout
               </a>
             </div>

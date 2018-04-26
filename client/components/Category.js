@@ -25,10 +25,10 @@ class Category extends Component {
                 </div>
                 <img id="artist-photo-list" src={singleartist.stylePhoto} />
               </div>
-            </a>
               <div className="artist-bio-list">
                 {singleartist.biography}
               </div>
+            </a>
           </div>
         )
       }

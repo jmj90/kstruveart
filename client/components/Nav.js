@@ -12,16 +12,16 @@ let Nav = ({ handleClick, isLoggedIn }) => {
   return (
     <div>
       <div className="Nav-Nav">
-        <img id="navlogo" src="/images/mainlogo2.png" />
+        <img id="navlogo" src="/images/mainlogo4.png" />
         <a href="/artists"  className="Nav-Item"> artists </a>
         <a href="/allproducts" className="Nav-Item"> artwork </a>
-        {/* <Link to="/prints" className="Nav-Item"> prints </Link> */}
         <a href="/contact" className="Nav-Item"> contact </a>
         <div className="Nav-Item">
           <div id="searchcontainer">
         <SearchBar id="navbarsearch" fluid={true} />
         </div>
         </div>
+        <div id="nav-seperator" />
       </div>
     </div>
   )

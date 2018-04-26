@@ -86,12 +86,13 @@ class ProductDetail extends Component {
 
 
   render() {
-
+    const numberWithCommas = (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     const {product} = this.props
 
     return (
       <div>
-        {console.log('44444')}
         <Nav />
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
@@ -137,7 +138,7 @@ class ProductDetail extends Component {
                         }
                         {
                           Number(product.price) !== 0 && !(product.isSold) ?
-                          <div className="product-view-price">${+product.price / 100}</div>
+                          <div className="product-view-price">${numberWithCommas(product.price / 100)}</div>
                           :
                           <div />
                         }

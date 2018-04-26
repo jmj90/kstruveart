@@ -21,10 +21,6 @@ class SingleProduct extends Component {
   removeProduct = (prodID) => {
     event.stopPropagation();
     const { removeProduct, product } = this.props;
-
-    console.log('this is the current product?: ', product.id, ' ', product.title)
-    console.log('prodID', prodID)
-
     removeProduct(prodID);
   }
 
@@ -54,13 +50,16 @@ class SingleProduct extends Component {
   }
   */
 
+
   // ================================================================ //
 
   render() {
     const { product } = this.props;
+    const numberWithCommas = (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     return (
       <div>
-        {console.log('updated again')}
         <div id="deletion-confirm-window">
           <div className="deletion-alert">
             <div id="deletion-question"> ARE YOU SURE YOU WANT TO REMOVE THIS PRODUCT? </div>
@@ -95,7 +94,7 @@ class SingleProduct extends Component {
               }
               {
                 Number(product.price) !== 0 && !(product.isSold) ?
-                <div className="product-view-price">${+product.price / 100}</div>
+                <div className="product-view-price">${ numberWithCommas(product.price / 100)}</div>
                 :
                 <div />
               }

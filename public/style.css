@@ -127,7 +127,8 @@ form div {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 80vw;
+  /* width: 80vw; */
+  width: 1170px;
 }
 
 .category-filter{
@@ -157,7 +158,7 @@ form div {
   border-width: thin;
   border-color: black;
   background-color: rgba(26,26,26,.3);
-  width: 80vw;
+  width: 1170px;
   height: 0px;
   overflow: auto;
   transition: height .2s ease;
@@ -169,6 +170,7 @@ form div {
 
 #artist-title-bar-name-photo {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 1rem;
@@ -178,11 +180,14 @@ form div {
   font-size: 30px;
   padding-right: 2rem;
   letter-spacing: 5px;
+  line-height: 1.3;
   color: white;
 }
 
 .artist-bio-list {
   padding: 1rem;
+  font-size: 1.2em;
+  color: white;
 }
 
 #artist-photo-container {
@@ -269,6 +274,7 @@ form div {
 
 .scroll-list-title {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   font-family: "Geneva";
   text-transform: uppercase;
@@ -288,27 +294,40 @@ form div {
 
 .Nav-Nav {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   background-color: #E8E8E8;
   align-items: center;
   z-index: 1;
   padding-top: 2rem;
-  padding-bottom: 2rem;
   width: 100%;
 }
 
 .Nav-Item {
   font-family: "Trebuchet MS";
   font-weight: lighter;
-  font-size: .78em;
+  font-size: 1.2em;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 5px;
   color: white;
-  margin-right: 2.5em;
-  margin-left: 2.5em;
+  margin-right: 1.3em;
+  margin-left: 1.3em;
   cursor: pointer;
   transition: color .2s ease;
   color: black;
+}
+
+.Nav-Item-admin {
+  font-family: "Trebuchet MS";
+  font-weight: lighter;
+  font-size: .9em;
+  color: white;
+  margin-right: 1.3em;
+  margin-left: 1.3em;
+  cursor: pointer;
+  transition: color .2s ease;
+  color: black;
+}
 }
 
 .Nav-Item:hover {
@@ -316,14 +335,23 @@ form div {
 }
 
 #navlogo {
-  max-height: 17px;
-  margin-left: 1rem;
+  max-height: 40px;
+  margin-right: 3rem;
   cursor: pointer;
+}
+
+#nav-seperator {
+  margin-top: 1rem;
+  height: 3px;
+  width: 1170px;
+  background-color: #B92228;
 }
 
 .ui.input input {
   background-color: white !important;
   color: black !important;
+  height: 30px !important;
+  margin: 0 !important;
 }
 
 .ui.icon.input>i.icon {
@@ -375,7 +403,7 @@ form div {
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
-  width: 80%;
+  width: 1170px;
   background-color: #D0D0D0;
 }
 
@@ -478,7 +506,7 @@ form div {
 /* =============== A R T I S T  C A R D =================== */
     .artist-view-info {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
     }
 
     .artist-product-info {
@@ -536,7 +564,7 @@ form div {
       align-self: center;
       border-bottom-color: black;
       border-bottom-style: solid;
-      width: 80%;
+      width: 1170px;
     }
 
     .product-view-title {
@@ -685,7 +713,7 @@ form div {
 }
 
 #lander-navlogo {
-  max-height: 19px;
+  max-height: 40px;
 }
 
 .Nav-Item-lander {
@@ -758,7 +786,7 @@ form div {
 
 #footer-address {
   font-family: "Trebuchet MS";
-  font-size: .8em;
+  font-size: 1em;
   color: black;
 }
 
@@ -787,7 +815,7 @@ form div {
 #Nav-Item-Admin-signature {
   font-family: "Trebuchet MS";
   font-weight: lighter;
-  font-size: .5em;
+  font-size: .7em;
   color: black;
   letter-spacing: 2px;
   cursor: pointer;
@@ -1091,4 +1119,448 @@ form div {
 .carousel .carousel-image.hidden {
   display: none;
   opacity: 0;
+}
+
+
+@media only screen and (max-width: 1170px) {
+
+  .carousel .carousel-image {
+    position: static;
+    max-width: 900px;
+    opacity: 1;
+    transition: opacity .5s;
+  }
+
+  #filter-list {
+    width: 900px;
+  }
+
+  #aristlist{
+    width: 900px;
+  }
+
+  .Nav-Nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #E8E8E8;
+    align-items: center;
+    z-index: 1;
+    padding-top: 2rem;
+  }
+
+  .Nav-Item {
+    font-family: "Trebuchet MS";
+    font-weight: lighter;
+    font-size: .8em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: white;
+    margin-right: 1.3em;
+    margin-left: 1.3em;
+    cursor: pointer;
+    transition: color .2s ease;
+    color: black;
+  }
+
+  .Nav-Item:hover {
+    color: #C1272D;
+  }
+
+  #navlogo {
+    max-height: 40px;
+    margin-right: 0;
+    cursor: pointer;
+  }
+
+  #nav-seperator {
+    margin-top: 1rem;
+    height: 3px;
+    width: 900px;
+    background-color: #B92228;
+  }
+
+  .ui.input input {
+    background-color: white !important;
+    color: black !important;
+    height: 30px !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .productView {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 900px;
+    background-color: #D0D0D0;
+  }
+
+  .product-card {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgray;
+    box-shadow: 0px 4px 10px gray;
+    padding: 1rem;
+    margin: 1rem;
+    min-height: 391px;
+    max-height: 400px;
+    transition: box-shadow .2s ease;
+  }
+
+  .single-artist-view {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    width: 900px;
+  }
+}
+
+
+
+
+
+
+
+@media only screen and (max-width: 900px) {
+
+  .carousel .carousel-image {
+    position: static;
+    max-width: 500px;
+    opacity: 1;
+    transition: opacity .5s;
+  }
+
+  #filter-list {
+    width: 500px;
+  }
+
+  #aristlist {
+    width: 500px;
+  }
+
+  .artist-tile {
+    font-family: "Geneva";
+    width: 95%;
+    font-size: 12px;
+    background-color: rgba(36,36,36,.9);
+    letter-spacing: 2px;
+    color: white;
+    margin: 5px;
+    margin-top: 10px;
+    padding: .4rem;
+    opacity: .9;
+    transition: color .2s ease;
+    transition: background-color .2s ease;
+
+  }
+
+  .category-filter{
+    font-size: 10px;
+    margin-bottom: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: white;
+    transition: color .2s ease;
+    background-color: #C1272D;
+    cursor: pointer;
+  }
+
+  .scroll-list-title {
+    display: flex;
+    font-size: 10px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-family: "Geneva";
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background-color: rgba(36,36,36,.9);
+    color: white;
+    padding: .5rem;
+    z-index: 1;
+    box-shadow: 0px 5px 10px -3px black;
+  }
+
+  #filter-selection {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #expand-btn {
+    display: none;
+  }
+
+  #artist-photo-list {
+    max-width: 200px;
+  }
+
+  .artist-name-list {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    padding-right: 4rem;
+    padding-left: 4rem;
+    line-height: 1.3;
+    color: white;
+  }
+
+  #artist-title-bar-name-photo {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+  }
+
+  .Nav-Nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #E8E8E8;
+    align-items: center;
+    z-index: 1;
+    padding-top: 2rem;
+  }
+
+  .Nav-Item {
+    font-family: "Trebuchet MS";
+    font-weight: lighter;
+    font-size: .8em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: white;
+    margin-right: 1.3em;
+    margin-left: 1.3em;
+    cursor: pointer;
+    transition: color .2s ease;
+    color: black;
+  }
+
+  .Nav-Item:hover {
+    color: #C1272D;
+  }
+
+  #navlogo {
+    max-height: 40px;
+    margin-right: 0;
+    cursor: pointer;
+  }
+
+  #nav-seperator {
+    margin-top: 1rem;
+    height: 3px;
+    width: 500px;
+    background-color: #B92228;
+  }
+
+  .ui.input input {
+    background-color: white !important;
+    color: black !important;
+    height: 30px !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .productView {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 500px;
+    background-color: #D0D0D0;
+  }
+
+  .product-card {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgray;
+    box-shadow: 0px 4px 10px gray;
+    padding: 1rem;
+    margin: 1rem;
+    min-height: 391px;
+    max-height: 400px;
+    transition: box-shadow .2s ease;
+  }
+}
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 750px) {
+
+    .carousel .carousel-image {
+      display: none;
+      position: static;
+      max-width: 900px;
+      opacity: 1;
+      transition: opacity .5s;
+    }
+
+
+      #filter-list {
+        width: 300px;
+      }
+
+      #aristlist {
+        width: 300px;
+      }
+
+      #navlogo {
+        max-height: 20px;
+        margin-right: 0rem;
+        cursor: pointer;
+      }
+
+
+
+      .artist-tile {
+        font-family: "Geneva";
+        width: 95%;
+        font-size: 12px;
+        background-color: rgba(36,36,36,.9);
+        letter-spacing: 2px;
+        color: white;
+        margin: 5px;
+        margin-top: 10px;
+        padding: .4rem;
+        opacity: .9;
+        transition: color .2s ease;
+        transition: background-color .2s ease;
+
+      }
+
+      .category-filter{
+        font-size: 10px;
+        margin-bottom: 1px;
+        margin-left: 5px;
+        margin-right: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        color: white;
+        transition: color .2s ease;
+        background-color: #C1272D;
+        cursor: pointer;
+      }
+
+      .scroll-list-title {
+        display: flex;
+        font-size: 10px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        font-family: "Geneva";
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        background-color: rgba(36,36,36,.9);
+        color: white;
+        padding: .5rem;
+        z-index: 1;
+        box-shadow: 0px 5px 10px -3px black;
+      }
+
+      #filter-selection {
+        display: flex;
+        flex-direction: column;
+      }
+
+      #expand-btn {
+        display: none;
+      }
+
+      #artist-photo-list {
+        max-width: 200px;
+      }
+
+      .artist-name-list {
+        display: flex;
+        justify-content: center;
+        font-size: 20px;
+        padding-right: 4rem;
+        padding-left: 4rem;
+        line-height: 1.3;
+        color: white;
+      }
+
+      #artist-title-bar-name-photo {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+      }
+
+      .productView {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 300px;
+        background-color: #E8E8E8;
+      }
+
+      .product-card {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        align-items: center;
+        background-color: lightgray;
+        box-shadow: 0px 0px 0px gray;
+        padding: 2rem;
+        margin: 1rem;
+        min-height: 100px;
+        max-height: 400px;
+        transition: box-shadow .2s ease;
+      }
+
+      .single-artist-view {
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        border-bottom-color: black;
+        border-bottom-style: solid;
+        width: 300px;
+      }
+
+      .single-product-view {
+        display: flex;
+        justify-content: center;
+        width: 300px;
+      }
+
+      .current-product {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        width: 80%;
+        margin-top: 4rem;
+        margin-bottom: 6em;
+      }
+
+      .artist-view-image {
+        display: none;
+      }
+
+      #footer-address {
+        font-size: 10px;
+      }
 }
