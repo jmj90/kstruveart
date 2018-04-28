@@ -17,6 +17,9 @@ import {
   AdminAddArtist,
   ArtistDetail,
   Construction,
+  AllUsers,
+  ResetPasswordPage,
+  ResetPassword,
   Home
 } from './components'
 import SearchBar from './components/search'
@@ -42,7 +45,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-      {/*  <Route exact path="/" component={Artists} /> */}
+        {/*  <Route exact path="/" component={Artists} /> */}
         <Route exact path="/" component={Construction} />
         <Route exact path="/artists" component={Artists} />
         <Route exact path="/artists/:id" component={ArtistDetail} />
@@ -53,12 +56,14 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/category/:id" component={Category} />
+        <Route exact path="/reset-password" component={ResetPassword} />
         {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route exact path="/adminaddproduct" component={AdminAddProduct} />
               <Route exact path="/adminaddartist" component={AdminAddArtist} />
+              <Route exact path="/adminusermanage" component={AllUsers} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}

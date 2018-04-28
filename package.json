@@ -21,6 +21,7 @@
   "author": "Jake Johnson",
   "license": "MIT",
   "dependencies": {
+    "availity-reactstrap-validation": "^2.0.2",
     "axios": "^0.15.3",
     "body-parser": "^1.16.1",
     "compression": "^1.7.1",
@@ -42,6 +43,7 @@
     "react-parallax": "^1.6.1",
     "react-redux": "^5.0.2",
     "react-router-dom": "^4.1.1",
+    "reactstrap": "^5.0.0",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",

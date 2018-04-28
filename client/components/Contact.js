@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Parallax} from 'react-parallax'
 import { connect } from 'react-redux';
-import Nav from './Nav.js'
+import Nav from './Nav'
 import Footer from './Footer'
 import AdminToolbar from './AdminToolbar'
 
