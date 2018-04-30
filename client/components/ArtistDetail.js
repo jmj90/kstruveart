@@ -146,10 +146,10 @@ getProducts() {
     return (
       <div>
         <Nav />
+        <div id="maincontent">
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
           </div>
-        <div id="maincontent">
           <div className="single-artist-view">
 
             {/*   A R T I S T   I N F O   A R E A   */}
