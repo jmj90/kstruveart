@@ -94,10 +94,10 @@ class ProductDetail extends Component {
     return (
       <div>
         <Nav />
+        <div id="maincontent">
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
           </div>
-        <div id="maincontent">
           <div className="single-product-view">
             {
               this.props.products.filter(product => product.id === this.props.product.id)

@@ -6,7 +6,6 @@ import AdminToolbar from './AdminToolbar'
 
 const mapStateToProps = (state) => {
   return {
-    userSingle: state.user,
     users: state.allUsers
   }
 }
@@ -34,8 +33,8 @@ const mapDispatchToProps = (dispatch) => {
     handlePasswordClick: (evt) => {
       const evtArray = evt.target.id.split('password')
       const userId = +evtArray[0]
+      console.log(evtArray)
       const userNeedsPasswordReset = (evtArray[1] === 'true')
-      console.log('arr', evtArray)
       const currentClassName = userNeedsPasswordReset ? 'on toggle icon' : 'off toggle icon'
       document.getElementById(userId + 'password' + userNeedsPasswordReset).className = currentClassName.includes('on') ? 'off toggle icon' : 'on toggle icon'
       const updateUserThunk = updateUserThunkCreator(userId, 'needsPasswordReset', !userNeedsPasswordReset)
@@ -43,7 +42,6 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-
 
 class AllUsers extends Component {
 
@@ -56,7 +54,9 @@ class AllUsers extends Component {
       return (
         <div>
           <Nav />
+          <div id="maincontent">
           <AdminToolbar />
+          <div id="user-management-container">
         <table className="ui single line table marginClass">
           <tbody>
             <tr>
@@ -94,7 +94,9 @@ class AllUsers extends Component {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
+    </div>
       )
     } else {
       return (

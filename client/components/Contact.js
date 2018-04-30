@@ -20,10 +20,10 @@ class Contact extends Component {
     return (
       <div>
         <Nav />
+        <div id="maincontent">
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
           </div>
-              <div id="maincontent">
                 <div className="title">C O N T A C T</div>
                 <div id="contact-viewport">
                 <div className="contact-card">

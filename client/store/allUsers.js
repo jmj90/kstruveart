@@ -51,7 +51,6 @@ export const updateUserThunkCreator = (userId, key, value) =>
       .catch(err => console.error(err))
   }
 
-
 /**
  * REDUCER
  */

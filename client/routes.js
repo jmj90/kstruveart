@@ -8,7 +8,6 @@ import {
   UserHome,
   Lander,
   Artists,
-  Catalogs,
   Category,
   Contact,
   AllProducts,
@@ -64,6 +63,7 @@ class Routes extends Component {
               <Route exact path="/adminaddproduct" component={AdminAddProduct} />
               <Route exact path="/adminaddartist" component={AdminAddArtist} />
               <Route exact path="/adminusermanage" component={AllUsers} />
+              <Route path="/account-settings" component={UserHome} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}

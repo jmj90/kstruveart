@@ -1,7 +1,7 @@
 /* `components/index.js` ia a 'central export' for our components. */
 
-// export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
+export {default as UserHome} from './user-home'
 export {default as Nav} from './Nav'
 export {default as Artists} from './Artists'
 export {default as ArtistDetail} from './ArtistDetail'

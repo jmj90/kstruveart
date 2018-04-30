@@ -97,7 +97,10 @@ form div {
 #maincontent {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #E8E8E8;
+  margin-bottom: 5rem;
 }
 
 .boundry-message {
@@ -131,13 +134,68 @@ form div {
   align-items: center;
 }
 
-#divider{
+#divider {
   display: flex;
   justify-content: center;
   width: 50px;
   background-color: black;
   height: 4px;
 }
+
+/* ==================================================== */
+
+/* |||||||||| -- A C C O U N T  S E T T I N G S   P A G E -- |||||||||| */
+
+#account-settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+  width: 100vh;
+}
+
+#user-info-container {
+  /* display: flex;
+  flex-direction: column; */
+}
+
+#password-field {
+  background-color: lightgray;
+}
+
+#password-field.active {
+  background-color: white;
+}
+
+#email-field {
+  background-color: lightgray;
+}
+
+#email-field.active {
+  background-color: white;
+}
+
+.edit-button {
+  margin-top: 10px;
+  width: 40px;
+}
+
+.account-form-inputs {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 1em;
+}
+
+#user-management-container {
+  display: flex;
+  justify-content: center;
+  width: 70vw;
+  margin-top: 2rem;
+}
+
+/* ==================================================== */
 
 /* ==================================================== */
 
@@ -391,7 +449,7 @@ form div {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 50vh;
+  min-height: 43vh;
 }
 
 .contact-card {
@@ -920,7 +978,7 @@ form div {
 
 #admin-toolbar {
   display: flex;
-  justify-content: center;
+  width: 1170px;
   font-family: "Trebuchet MS";
   background-color: #eafeff;
   letter-spacing: 2px;
@@ -1159,6 +1217,11 @@ form div {
     width: 900px;
   }
 
+  #admin-toolbar {
+    width: 900px;
+  }
+
+
   .Nav-Nav {
     display: flex;
     flex-direction: column;
@@ -1265,6 +1328,11 @@ form div {
     width: 500px;
   }
 
+  #admin-toolbar {
+    width: 500px;
+  }
+
+
   .artist-tile {
     font-family: "Geneva";
     width: 95%;
@@ -1278,8 +1346,8 @@ form div {
     opacity: .9;
     transition: color .2s ease;
     transition: background-color .2s ease;
-
   }
+
 
   .category-filter{
     font-size: 10px;
@@ -1434,6 +1502,9 @@ form div {
       transition: opacity .5s;
     }
 
+      #admin-toolbar {
+        width: 500px;
+      }
 
       #filter-list {
         width: 300px;

@@ -72,11 +72,11 @@ class Category extends Component {
     return (
       <div>
         <Nav />
+        <div id="maincontent">
         <div>
           { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
         </div>
         <Carousel />
-              <div id="maincontent">
                 <div className="title">A R T I S T S</div>
                 <div id="artist-scroller-div">
                   <div id="filter-list">

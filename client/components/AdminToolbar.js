@@ -13,6 +13,7 @@ let AdminToolbar = ({ handleClick, isLoggedIn }) => {
         ADMIN TOOLBAR:
         <Link to="/adminaddProduct" className="Admin-Nav-Item"> add product </Link>
         <Link to="/adminaddArtist" className="Admin-Nav-Item"> add artist </Link>
+        <Link to="/account-settings" className="Admin-Nav-Item"> account settings </Link>
         {/* <Link to="/adminusermanage" className="Admin-Nav-Item"> user management </Link> */}
           {
             isLoggedIn ? (

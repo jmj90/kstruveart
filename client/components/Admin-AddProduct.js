@@ -114,8 +114,8 @@ handleInputChange(event) {
     return (
       <div>
         <Nav />
-        <AdminToolbar />
         <div id="maincontent">
+        <AdminToolbar />
                 <div className="sub-title"> ADD A PRODUCT </div>
                 <div id="add-product-viewport">
                 <div className="add-product-card">

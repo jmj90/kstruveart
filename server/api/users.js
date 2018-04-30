@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const { User } = require('../db/models')
 module.exports = router
 
 const adminGateway = (req, res, next) => {

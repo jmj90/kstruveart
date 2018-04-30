@@ -97,13 +97,11 @@ class Artists extends Component {
       <div>
         <Nav />
         {this.carousel()}
+        <div id="maincontent">
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
           </div>
-              <div id="maincontent">
-
                 <Carousel />
-
                 <div className="title">A R T I S T S</div>
                 <div id="artist-scroller-div">
                   <div id="filter-list">

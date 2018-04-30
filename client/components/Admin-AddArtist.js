@@ -148,8 +148,8 @@ componentDidMount() {
     return (
       <div>
         <Nav />
-        <AdminToolbar />
         <div id="maincontent">
+        <AdminToolbar />
                 <div className="sub-title"> ADD AN ARTIST </div>
                 <div id="add-product-viewport">
                 <div className="add-product-card">
