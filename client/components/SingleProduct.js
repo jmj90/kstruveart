@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { removeProduct } from '../store/products';
 import { Button } from 'semantic-ui-react'
 import history from '../history'
@@ -73,8 +73,15 @@ class SingleProduct extends Component {
           </Link>
             <div className="product-info">
               <Link to={`/products/${product.id}`}>
+                {
+                  this.props.artist.filter(singleArtist => product.artistId === singleArtist.id)
+                  .map(artist => (
+                      <div className="product-title-name">{artist.fullname}</div>
+                    )
+                  )
+                }
               <div className="product-title">
-                { product.title }
+                <i>{ product.title }</i>
               </div>
             </Link>
               <div className="product-description">
@@ -116,7 +123,8 @@ const mapStateToProps = (state) => {
   return {
     products: state.products,
     user: state.user,
-    pressValue: null
+    pressValue: null,
+    artist: state.artist
   }
 }
 

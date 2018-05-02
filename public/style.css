@@ -517,6 +517,12 @@ form div {
   margin-top: 1rem;
 }
 
+.product-title-name {
+  color: black;
+  font-size: 1.3rem !important;
+  margin-top: 1rem;
+}
+
 .product-description {
   padding-bottom: .6rem;
   min-height: 85px;

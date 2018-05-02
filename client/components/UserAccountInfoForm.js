@@ -57,7 +57,7 @@ class AccountForm extends Component {
     const updatedUser = Object.assign({}, user,
       {
         id: this.props.user.id,
-        email: event.target.email.value,
+        email: event.target.email.value.toLowerCase(),
       }
     )
     this.props.updateUser(updatedUser);
