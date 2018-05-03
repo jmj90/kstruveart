@@ -35,7 +35,7 @@ class AccountForm extends Component {
             <div className="account-form-inputs">
               <label className="user-info"><b>Email</b>: {user.email} </label>
               <input name="email" id="email-field" disabled placeholder={user.email} defaultValue={user.email} />
-              <div className="edit-button" onClick={this.emailUpdaterButton}>edit</div>
+              <div className="edit-button-1" onClick={this.emailUpdaterButton}>edit</div>
               <button disabled id="email-save-button" className="edit-button" onClick={this.emailUpdaterButton}>save</button>
             </div>
             </Form>
@@ -43,7 +43,7 @@ class AccountForm extends Component {
             <div className="account-form-inputs">
               <label className="user-info"><b>Password</b>:</label>
               <input name="password" type="password" id="password-field" disabled placeholder="***************" />
-              <div className="edit-button" onClick={this.passwordUpdaterButton}>edit</div>
+              <div className="edit-button-1" onClick={this.passwordUpdaterButton}>edit</div>
               <button disabled id="password-save-button" className="edit-button" onClick={this.passwordUpdaterButton}>save</button>
             </div>
           </Form>

@@ -47,6 +47,10 @@ form div {
   display: inline-block;
 }
 
+#version {
+  margin: .2rem;
+}
+
 #offline-lander {
   display: flex;
   flex-direction: column;
@@ -178,7 +182,26 @@ form div {
 
 .edit-button {
   margin-top: 10px;
+  width: 65px;
+}
+
+.edit-button-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
   width: 40px;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 3px;
+  border-color: gray;
+  border-style: solid;
+  border-width: .6px;
+  box-shadow: 0px .8px 2px gray;
+}
+
+.edit-button-1:active {
+    background-color: blue;
 }
 
 .account-form-inputs {
@@ -292,6 +315,11 @@ form div {
   min-width: 50%;
   margin: 1rem;
   padding: 1rem;
+}
+
+.artist-view-category{
+  margin-top: 1rem;
+
 }
 
 #filter-selection {
@@ -940,6 +968,7 @@ form div {
   color: #BCBCBC;
   letter-spacing: 4px;
 }
+
 
 #auth-form {
   display: flex;

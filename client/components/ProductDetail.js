@@ -75,8 +75,6 @@ class ProductDetail extends Component {
 
   // ========================================================================== //
 
-
-
   enterpressalert(e){
     var code = e.keyCode || e.which
     if (code == 13) {
@@ -188,6 +186,16 @@ class ProductDetail extends Component {
                      <textarea id="edit-product-desc" onChange={this.enterpressalert} name="desc" type="text" defaultValue={product.description} />
                      <label>Price</label>
                      <input name="price" type="number" type="decimal" defaultValue={product.price/100} />
+                      <label>Category:</label>
+                        <select className="add-product-form-inputs" name="producttype" type="text" required placeholder="Product Type">
+                          <option selected="selected" disabled> {product.producttype} </option>
+                            <option value="book">Book</option>
+                            <option value="catalog">Catalog</option>
+                            <option value="original">Original</option>
+                            <option value="poster">Poster</option>
+                            <option value="print">Print</option>
+                            <option value="other">Other</option>
+                          </select>
                      <label>Inventory</label>
                      <input name="inventory" type="number" defaultValue={product.inventory} />
                      <label>Sold:</label>
@@ -255,6 +263,7 @@ class ProductDetail extends Component {
         id: this.props.product.id,
         title: event.target.title.value,
         description: event.target.desc.value,
+        producttype: event.target.producttype.value,
         price: (event.target.price.value * 100),
         inventory: event.target.inventory.value,
         isSold: event.target.isSoldSelect.value,

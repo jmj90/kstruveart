@@ -162,8 +162,11 @@ getProducts() {
                         <div className="artist-name-bio">
                         <div className="artist-view-title"> {singleArtist.fullname} </div>
                         <div className="artist-view-bio">{singleArtist.biography}</div>
-                        <div className="artist-view-category">category:{' '}
-                        </div>
+                          { this.props.category.filter(cat => cat.id === this.props.artistselected.artistStyleCategoryId)
+                           .map(artistCat =>
+                           <div className="artist-view-category"><b>Artist Category:</b>{' '}{artistCat.title}</div>
+                           )
+                           }
                       </div>
                         <img className="artist-view-image" src={singleArtist.photo} />
                     </div>
@@ -226,6 +229,11 @@ getProducts() {
                              <input name="stylephotoURL" type="text" defaultValue={artistselected.stylePhoto} />
                              <label>Category</label>
                              <select name="category" type="text">
+                              { this.props.category.filter(cat => cat.id === this.props.artistselected.artistStyleCategoryId)
+                               .map(artistCat =>
+                               <option selected="selected" disabled> {artistCat.title} </option>
+                               )
+                               }
                              {
                                  this.props.category.map(cat =>
                                    <option value={cat.id}>{cat.title}</option>)
@@ -358,7 +366,7 @@ getProducts() {
 
 }
 
-const mapStateToProps = ({ artist, products, user, category, carts }, ownProps) => {
+const mapStateToProps = ({ artist, products, user, category, carts, artistStyleCategories }, ownProps) => {
   const artistParamId = Number(ownProps.match.params.id);
   return {
     artistselected: artist.find(artistselected => artistselected.id === artistParamId),
@@ -366,6 +374,7 @@ const mapStateToProps = ({ artist, products, user, category, carts }, ownProps) 
     user,
     category,
     artist,
+    artistStyleCategories,
     carts
   };
 }

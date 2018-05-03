@@ -47,6 +47,7 @@ export const addArtist = artist => dispatch => {
   axios.post('/api/artists', artist)
     .then(res => {
       dispatch(createArtist(res.data))
+      console.log('logging artist to be created', res.data[0])
        window.location.href = `/artists/${res.data[0].id}`
     })
     .catch(err => console.error(`Error adding artist: ${artist}`, err));
