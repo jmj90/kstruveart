@@ -231,7 +231,7 @@ getProducts() {
                              <select name="category" type="text">
                               { this.props.category.filter(cat => cat.id === this.props.artistselected.artistStyleCategoryId)
                                .map(artistCat =>
-                               <option selected="selected" disabled> {artistCat.title} </option>
+                               <option selected="selected" disabled value={artistCat.id}> {artistCat.title} </option>
                                )
                                }
                              {

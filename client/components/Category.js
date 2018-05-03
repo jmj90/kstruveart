@@ -13,10 +13,13 @@ class Category extends Component {
   getArtists(categoryId) {
     categoryId = Number(categoryId)
     const {artist, artistStyleCategoryId } = this.props
+    let artistList = this.props.artist
+    artistList = _.sortBy(artistList, "lastname")
+
     return (
       <div id="aristlist" className="active">
         {
-          artist.filter(singleartist => singleartist.artistStyleCategoryId === categoryId).map(singleartist =>
+          artistList.filter(singleartist => singleartist.artistStyleCategoryId === categoryId).map(singleartist =>
             <div key={singleartist.id} className="artist-tile">
               <a href={`/artists/${singleartist.id}`}>
               <div id="artist-title-bar-name-photo">

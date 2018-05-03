@@ -8,6 +8,7 @@ import SingleProduct from './SingleProduct';
 import history from '../history'
 import AdminToolbar from './AdminToolbar'
 import Carousel from './Carousel'
+import _ from 'lodash'
 
 class Artists extends Component {
 
@@ -30,11 +31,14 @@ class Artists extends Component {
 
   getArtists(categoryId) {
     const {artist, artistStyleCategoryId } = this.props
+    let artistList = this.props.artist
+    artistList = _.sortBy(artistList, "lastname")
+
     return (
       <div id="aristlist" className="active">
         {
           categoryId ?
-          artist.filter(singleartist => singleartist.artistStyleCategoryId === categoryId).map(singleartist =>
+          artistList.filter(singleartist => singleartist.artistStyleCategoryId === categoryId).map(singleartist =>
             <div key={singleartist.id} className="artist-tile">
               <a href={`/artists/${singleartist.id}`}>
               <div id="artist-title-bar-name-photo">
@@ -50,7 +54,7 @@ class Artists extends Component {
             </div>
           )
             :
-            artist.map(singleartist =>
+            artistList.map(singleartist =>
               <div key={singleartist.id} className="artist-tile">
                 <a href={`/artists/${singleartist.id}`}>
                 <div id="artist-title-bar-name-photo">

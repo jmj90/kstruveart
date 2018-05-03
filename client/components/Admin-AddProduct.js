@@ -8,6 +8,7 @@ import { addProduct } from '../store/products';
 import { Form, Button } from 'semantic-ui-react'
 import * as firebase from 'firebase';
 import AdminToolbar from './AdminToolbar'
+import _ from 'lodash'
 
 class AdminAddProduct extends Component {
 
@@ -110,6 +111,15 @@ handleInputChange(event) {
 
   render() {
     const { product } = this.props
+    let artistArray = this.props.artist
+    artistArray = _.sortBy(artistArray,"lastname")
+
+    function sortByKey(array, key) {
+      return array.sort(function(a, b) {
+        var x = a[key]; var y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+}
 
     return (
       <div>
@@ -141,9 +151,9 @@ handleInputChange(event) {
                         <label className="form-label"> Artist </label>
                         <select className="add-product-form-inputs"  name="artistSelect" type="text" placeholder="select an artist">
                           <option selected="selected" disabled> Choose one </option>
-                          <option value="none">None</option>
+                          {console.log('arty array', artistArray)}
                           {
-                            this.props.artist.map(artist => <option key={artist.id} value={artist.id}>{artist.fullname}</option>)
+                            artistArray.map(artist => <option key={artist.id} value={artist.id}>{artist.fullname}</option>).sort()
                           }
                         </select>
                         <label className="form-label"> Description: </label>
