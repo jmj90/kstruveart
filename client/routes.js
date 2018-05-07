@@ -18,6 +18,8 @@ import {
   Construction,
   AllUsers,
   ResetPasswordPage,
+  AdminArtistQuicklist,
+  AdminProductQuicklist,
   ResetPassword,
   Home
 } from './components'
@@ -62,6 +64,8 @@ class Routes extends Component {
               {/* Routes placed here are only available after logging in */}
               <Route exact path="/adminaddproduct" component={AdminAddProduct} />
               <Route exact path="/adminaddartist" component={AdminAddArtist} />
+              <Route exact path="/admin-artistquicklist" component={AdminArtistQuicklist} />
+              <Route exact path="/admin-productquicklist" component={AdminProductQuicklist} />
               <Route exact path="/adminusermanage" component={AllUsers} />
               <Route path="/account-settings" component={UserHome} />
             </Switch>

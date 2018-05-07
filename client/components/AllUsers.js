@@ -45,11 +45,29 @@ const mapDispatchToProps = (dispatch) => {
 
 class AllUsers extends Component {
 
+
   componentDidMount () {
     this.props.getAllUsers()
+
   }
 
   render () {
+    // function findMasterUser(docElement) {
+    //   let counter = 0
+    //   console.log('running')
+    //   while (counter < 30) {
+    //     console.log('inside')
+    //     console.log(docElement[counter])
+    //     counter++
+    //     if (docElement[counter].innerHTML == 'jakej.dev@gmail.com') {
+    //           docElement[counter + 1].classList.add('disabled')
+    //           docElement[counter + 2].classList.add('disabled')
+    //           docElement[counter + 3].classList.add('disabled')
+    //           return
+    //     }
+    //   }
+    // }
+
     if (this.props.users.length > 0) {
       return (
         <div>
@@ -67,7 +85,7 @@ class AllUsers extends Component {
               <th>Password Reset Flag</th>
               <th />
             </tr>
-            {this.props.users.map((user, index) => (
+            { this.props.users.map((user, index) => (
               <tr key={ user.id }>
                 <td>{ index + 1 }</td>
                 <td>{ user.id }</td>
@@ -91,7 +109,8 @@ class AllUsers extends Component {
                   </button>
                 </td>
               </tr>
-            ))}
+            ))
+          }
           </tbody>
         </table>
         </div>

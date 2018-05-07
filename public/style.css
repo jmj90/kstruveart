@@ -308,11 +308,13 @@ form div {
 
 .artist-product-card{
   display: flex;
+  flex-direction: column;
+  align-items: center;
   align-self: center;
   border-color: black;
   border-style: solid;
   border-width: thin;
-  min-width: 50%;
+  width: 240px;
   margin: 1rem;
   padding: 1rem;
 }
@@ -368,6 +370,48 @@ form div {
 
 }
 
+.artist-tile-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  width: 100%;
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: color .2s ease;
+  transition: background-color .2s ease;
+}
+
+.artist-name-list-quickview {
+  color: mediumblue;
+}
+
+.artist-name-list-quickview:hover {
+  color: blue;
+}
+
+.artist-tile-2:hover {
+  color: lightblue;
+  cursor: pointer;
+}
+
+#artist-quicklist {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#artist-count-list{
+  display: flex;
+  font-size: 20px;
+  text-decoration: underline;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .artist-tile:hover {
   background-color: rgba(36,36,36,1);
   cursor: pointer;
@@ -392,6 +436,23 @@ form div {
   padding-right: 2rem;
   z-index: 1;
   box-shadow: 0px 5px 10px -3px black;
+}
+
+.product-tile {
+  display: flex;
+  justify-content: space-between;
+}
+
+#spacer {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.productsDisplay2 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
 }
 
 /* ==================================================== */
@@ -537,11 +598,11 @@ form div {
 
 .product-image-artist-view {
   max-height: 200px;
-  margin-right: 1rem;
 }
 
 .product-title {
-  font-size: 1.3rem !important;
+  text-align: center;
+  font-size: 1.1rem !important;
   margin-top: 1rem;
 }
 
@@ -575,44 +636,55 @@ form div {
     .single-product-view {
       display: flex;
       justify-content: center;
+      flex-direction: column;
+      align-items: center;
     }
 
     .current-product{
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      width: 80%;
-      margin-top: 4rem;
-      margin-bottom: 6em;
+      margin-top: 1rem;
+      margin-bottom: 1em;
     }
 
     .product-view-image {
-      width: 400px;
       height: 400px;
       object-fit: contain;
-      margin-right: 3rem;
       cursor: pointer;
     }
 
     .product-view-info {
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: space-between;
       padding: 1rem;
+    }
+
+    #artist-name-box {
+      display: flex;
+      align-items: center;
     }
 
     #artist-name-link {
       display: flex;
       color: #3470B9;
-      font-size: 1.2rem;
-      border-bottom-style: solid;
-      border-bottom-color: black;
-      border-bottom-width: thin;
+      font-size: 1.1rem;
+      margin-top: 1rem;
       cursor: pointer;
     }
 
     #artist-name-link:hover {
       color: blue;
       cursor: pointer;
+    }
+
+    #photo-credit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
 /* =============== A R T I S T  C A R D =================== */
@@ -624,10 +696,13 @@ form div {
     .artist-product-info {
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: space-between;
     }
 
     .artist-view-image {
+      display: flex;
+      flex-direction: column;
       min-width: 400px;
       height: 400px;
       object-fit: contain;
@@ -640,6 +715,7 @@ form div {
       margin-bottom: 1rem;
     }
     .artist-product-description {
+      text-align: center;
       font-size: 12px;
       margin-bottom: 1rem;
     }
@@ -659,6 +735,17 @@ form div {
       font-size: 24px;
       font-weight: bold;
       margin-bottom: 1rem;
+    }
+
+    #artist-product-container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    #artist-product-collecton {
+      display: flex;
+      justify-content: center;
     }
 
     .current-artist{
@@ -681,18 +768,22 @@ form div {
 
     .product-view-title {
       font-family: "Trebuchet MS";
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 1rem;
+      font-size: 16px;
+      font-style: italic;
     }
 
     .product-view-price {
-      font-size: 16px;
+      font-size: 20px;
+      margin-top: .5rem;
+      margin-bottom: .5rem;
     }
 
     .product-view-desc {
-      width: 315px;
-      min-height: 195px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+      text-align: center;
+      white-space: pre-line;
     }
 
     .product-view-category {
@@ -870,6 +961,9 @@ form div {
   align-items: center;
   flex-direction: column;
   background-color: #E8E8E8;
+  border-top-color: black;
+  border-top-width: thin;
+  border-top-style: solid;
   width: 100%;
   left: 0;
   bottom: 0;
@@ -1015,14 +1109,11 @@ form div {
   display: flex;
   width: 1170px;
   font-family: "Trebuchet MS";
-  background-color: #eafeff;
+  background: linear-gradient(#9D4C4A, #9D4C4A);
   letter-spacing: 2px;
   padding: .5rem;
-  color: black;
-  border-color: black;
-  border-top-style: double;
-  border-bottom-style: double;
-  border-width: thin;
+  color: white;
+  box-shadow: 1px 1px 10px gray;
 }
 
 .Admin-Nav-Item {
@@ -1031,7 +1122,7 @@ form div {
   font-size: .78em;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: black;
+  color: white;
   margin-right: 2.5em;
   margin-left: 2.5em;
   cursor: pointer;
@@ -1040,8 +1131,13 @@ form div {
 }
 
 .Admin-Nav-Item:hover {
-  color: white;
+  color: aliceblue;
   text-shadow: 0px 2px 10px  black;
+}
+
+#5admintrue.disabled {
+  z-index: -4;
+
 }
 
 /* |||||||||| -- A D D  P R O D U C T -- |||||||||| */
@@ -1669,7 +1765,8 @@ form div {
       .single-product-view {
         display: flex;
         justify-content: center;
-        width: 300px;
+        flex-direction: column;
+        align-items: center;
       }
 
       .current-product {
@@ -1677,9 +1774,8 @@ form div {
         flex-direction: column;
         align-content: center;
         justify-content: center;
-        width: 80%;
-        margin-top: 4rem;
-        margin-bottom: 6em;
+        margin-top: 2rem;
+        margin-bottom: 1em;
       }
 
       .artist-view-image {

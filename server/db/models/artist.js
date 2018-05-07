@@ -23,6 +23,9 @@ const Artist = db.define('artist', {
     type: Sequelize.TEXT,
     defaultValue: '/images/defaultimage.png'
   },
+  photoCredit: {
+    type: Sequelize.TEXT,
+  },
 }, {
   getterMethods: {
     fullname: function(){

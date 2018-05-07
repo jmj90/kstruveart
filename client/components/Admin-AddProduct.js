@@ -112,7 +112,8 @@ handleInputChange(event) {
   render() {
     const { product } = this.props
     let artistArray = this.props.artist
-    artistArray = _.sortBy(artistArray,"lastname")
+    artistArray = _.sortBy(artistArray, 'lastname')
+    console.log('artits', artistArray)
 
     function sortByKey(array, key) {
       return array.sort(function(a, b) {
@@ -153,7 +154,7 @@ handleInputChange(event) {
                           <option selected="selected" disabled> Choose one </option>
                           {console.log('arty array', artistArray)}
                           {
-                            artistArray.map(artist => <option key={artist.id} value={artist.id}>{artist.fullname}</option>).sort()
+                            artistArray.map(artist => <option key={artist.id} value={artist.id}>{artist.fullname}</option>)
                           }
                         </select>
                         <label className="form-label"> Description: </label>
@@ -166,6 +167,7 @@ handleInputChange(event) {
                             <option value="original">Original</option>
                             <option value="poster">Poster</option>
                             <option value="print">Print</option>
+                            <option value="sculpture">Sculpture</option>
                             <option value="other">Other</option>
                           </select>
                         <label className="form-label"> Price: </label>

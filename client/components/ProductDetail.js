@@ -103,22 +103,19 @@ class ProductDetail extends Component {
                     <div className="current-product" key={product.id}>
                       <img className="product-view-image" src={product.photo} onClick={()=>window.location.assign(`${product.photo}`)}/>
                       <div className="product-view-info">
-                        <div className="product-view-title"> {product.title} </div>
-                        <div className="product-view-desc">{product.description}</div>
-                        <div className="product-view-artist">
                           {
+                            this.props.product ?
                             this.props.artist.filter(singleArtist => product.artistId === singleArtist.id)
                             .map(artist => (
-                              <div>
-                                <div>Artist:</div>
                                 <NavLink to={`/artists/${artist.id}`}>
                                 <div id="artist-name-link">{artist.fullname}</div>
                               </NavLink>
-                            </div>
                               )
                             )
+                            : <div/>
                           }
-                        </div>
+                        <div className="product-view-title"> {product.title} </div>
+                        <div className="product-view-desc">{product.description}</div>
                         <div className="product-view-category">category:{' '}
                           {product.producttype}
                         </div>
@@ -194,6 +191,7 @@ class ProductDetail extends Component {
                             <option value="original">Original</option>
                             <option value="poster">Poster</option>
                             <option value="print">Print</option>
+                            <option value="Ssulpture">Sculpture</option>
                             <option value="other">Other</option>
                           </select>
                      <label>Inventory</label>
@@ -258,6 +256,8 @@ class ProductDetail extends Component {
   // ========= Admin: Edit Product ========= \\
   editProductDetails(event, product) {
     event.preventDefault();
+    // var textarea = document.forms[0].desc.value
+    // textarea = textarea.replace(/\r?\n/g, '<br />');
     const updatedproduct = Object.assign({}, product,
       {
         id: this.props.product.id,

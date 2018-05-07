@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import Nav from './Nav'
 import Footer from './Footer'
 import { updateArtist, addArtist, removeArtist } from '../store/artist';
+import { removeProduct } from '../store/products';
 import { addCategory } from '../store/category'
-import { Button } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 import history from '../history'
 import AdminToolbar from './AdminToolbar'
 import SingleProduct from './SingleProduct';
@@ -24,6 +25,7 @@ class ArtistDetail extends Component {
       }
       this.editArtistDetails = this.editArtistDetails.bind(this);
       this.removeArtist = this.removeArtist.bind(this)
+      this.removeProduct = this.removeProduct.bind(this);
       this.createACategory = this.createACategory.bind(this)
       this.addToCart = this.addToCart.bind(this)
       this.uploadProfilePhoto = this.uploadProfilePhoto.bind(this)
@@ -168,7 +170,10 @@ getProducts() {
                            )
                            }
                       </div>
+                      <div id="photo-credit">
                         <img className="artist-view-image" src={singleArtist.photo} />
+                          photo: {singleArtist.photoCredit}
+                        </div>
                     </div>
 
                     {/* =========== artist profile image =========== */}
@@ -214,7 +219,7 @@ getProducts() {
                       </div>
                     {
                       this.props.user.isAdmin && artistselected ? (
-                       <form id="adminFormEditArtist" onSubmit={(event) => this.editArtistDetails(event, artistselected)}>
+                       <Form id="adminFormEditArtist" onSubmit={(event) => this.editArtistDetails(event, artistselected)}>
                            <h4>Edit Artist Details:</h4>
                             <label>First Name</label>
                             <input name="firstname" type="text" defaultValue={artistselected.firstname} />
@@ -224,9 +229,10 @@ getProducts() {
                             <textarea id="edit-artist-bio" name="bio" type="text" defaultValue={artistselected.biography} />
                             <label>Profile Image Url</label>
                             <input name="photoURL" type="text" defaultValue={artistselected.photo} />
-
-                             <label>Style Image Url</label>
+                              <label>Style Image Url</label>
                              <input name="stylephotoURL" type="text" defaultValue={artistselected.stylePhoto} />
+                             <label>Profile Photo Credit</label>
+                             <input name="photoCred" type="text" defaultValue={artistselected.photoCredit} />
                              <label>Category</label>
                              <select name="category" type="text">
                               { this.props.category.filter(cat => cat.id === this.props.artistselected.artistStyleCategoryId)
@@ -243,7 +249,7 @@ getProducts() {
                            <Button id="update-artist-btn" input color="blue" type="submit"> Update Artist </Button>
                            <Button color="red"  onClick={this.removeArtist}> Remove Artist </Button>
                           </div>
-                       </form>
+                       </Form>
                       ) :
                      <div />
                     }
@@ -257,9 +263,9 @@ getProducts() {
             </div>
 
               {/*   A R T I S T   P R O D U C T S  / A R T W O R K   A R E A   */}
-              <div className="title">Artists Items</div>
-
-
+              <div id="artist-product-container">
+                <div className="title">Artists Items</div>
+                  <div id="artist-product-collecton">
             {
               this.props.products && this.props.artistselected ?
               this.props.products.filter(product => product.artistId === this.props.artistselected.id)
@@ -296,18 +302,20 @@ getProducts() {
                       <div />
                     }
               </div>
-                { this.props.user.isAdmin ?
-                  (
-                    <Button onClick={() => {this.removeArtist(product.id)} }>
-                      Remove
-                    </Button>
-                  ) : <div />
-                }
+              { this.props.user.isAdmin ?
+                (
+                  <Button onClick={() => {this.removeProduct(product.id)} }>
+                    Remove
+                  </Button>
+                ) : <div />
+              }
               </div>)
             )
             :
             <div />
             }
+              </div>
+            </div>
           </div>
           <Footer />
         </div>
@@ -328,10 +336,17 @@ getProducts() {
   // ========= Admin: Remove Product ========= \\
   removeArtist(event) {
     const { removeArtist, artistselected } = this.props;
-    event.stopPropagation();
+    event.stopPropagation()
     removeArtist(artistselected.id);
     history.push('/')
   }
+
+
+    removeProduct = (prodID) => {
+      event.stopPropagation();
+      const { removeProduct, product } = this.props;
+      removeProduct(prodID);
+    }
 
   // ========= Admin: Edit Product ========= \\
   editArtistDetails(event, product) {
@@ -345,6 +360,7 @@ getProducts() {
         lastname: event.target.lastname.value,
         biography: event.target.bio.value,
         photo: profilePhoto,
+        photoCredit: event.target.photoCred.value,
         stylePhoto: stylePhoto,
         artistStyleCategoryId: event.target.category.value
       }
@@ -379,6 +395,6 @@ const mapStateToProps = ({ artist, products, user, category, carts, artistStyleC
   };
 }
 
-const mapDispatchToProps = { addArtist, updateArtist, removeArtist, addCategory };
+const mapDispatchToProps = { addArtist, updateArtist, removeArtist, addCategory, removeProduct };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ArtistDetail);
