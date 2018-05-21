@@ -15,6 +15,12 @@ const Artist = db.define('artist', {
   biography: {
     type: Sequelize.TEXT
   },
+  birthYear: {
+    type: Sequelize.TEXT
+  },
+  deathYear: {
+    type: Sequelize.TEXT
+  },
   photo: {
     type: Sequelize.TEXT,
     defaultValue: '/images/defaultimage.png'
@@ -30,6 +36,9 @@ const Artist = db.define('artist', {
   getterMethods: {
     fullname: function(){
         return this.firstname + ' ' + this.lastname
+    },
+    lifeSpan: function() {
+      return this.birthYear + ' - ' + this.deathYear
     }
   }
 })

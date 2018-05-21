@@ -12,10 +12,28 @@ const Product = db.define('product', {
   description: {
     type: Sequelize.TEXT
   },
+  year: {
+    type: Sequelize.STRING
+  },
+  height: {
+    type: Sequelize.INTEGER
+  },
+  length: {
+    type: Sequelize.INTEGER
+  },
+  width: {
+    type: Sequelize.INTEGER
+  },
   price: {
     type: Sequelize.INTEGER
   },
   producttype: {
+    type: Sequelize.STRING
+  },
+  media: {
+    type: Sequelize.STRING
+  },
+  edition: {
     type: Sequelize.STRING
   },
   saleType: {
@@ -29,7 +47,10 @@ const Product = db.define('product', {
   },
   inventory: {
     type: Sequelize.INTEGER
-  }
+  },
+  inventoryId: {
+    type: Sequelize.STRING
+  },
 })
 
 module.exports = Product

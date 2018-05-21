@@ -27,7 +27,6 @@ class ArtistDetail extends Component {
       this.removeArtist = this.removeArtist.bind(this)
       this.removeProduct = this.removeProduct.bind(this);
       this.createACategory = this.createACategory.bind(this)
-      this.addToCart = this.addToCart.bind(this)
       this.uploadProfilePhoto = this.uploadProfilePhoto.bind(this)
       this.uploadStylePhoto = this.uploadStylePhoto.bind(this);
   }
@@ -139,6 +138,101 @@ getProducts() {
   )
 }
 
+editArtistImageForm() {
+  const {artistselected} = this.props
+  return (
+   this.props.user.isAdmin && artistselected ?
+    <div>
+    <h4>edit artist images</h4>
+      <div id="image-upload-box3">
+        <div> Update <u>Artist Profile</u> Image: </div>
+        <input id="upload-image-button" type="file" onChange={this.fileSelectHandler} />
+        <div id="progressPercent">0%</div>
+          {
+           this.state.storageRef === 0 ?
+            <Button disabled color="black" id="fileButton" onClick={this.uploadProfilePhoto}> Upload File </Button>
+            :
+            <Button color="green" id="fileButton" onClick={this.uploadProfilePhoto}> Upload File </Button>
+          }
+        </div>
+        </div>
+        :
+      <div />
+  )
+}
+
+editArtistStyleImageForm() {
+  const {artistselected} = this.props
+  return (
+        this.props.user.isAdmin && artistselected ?
+          <div id="image-upload-box3">
+            <div> Update <u>Artist Style</u> Image: </div>
+            <input id="upload-image-button" type="file" onChange={this.fileSelectHandlerForStylePhoto} />
+            <div id="progressPercent2">0%</div>
+              {
+                this.state.storageRefforStyle === 0 ?
+                <Button disabled color="black" id="fileButton2" onClick={this.uploadStylePhoto}> Upload File </Button>
+                :
+                <Button color="green" id="fileButton2" onClick={this.uploadStylePhoto}> Upload File </Button>
+              }
+            </div>
+            :
+          <div />
+  )
+}
+
+editArtistInformationForm(){
+  const {category, artistselected} = this.props
+  return (
+      this.props.user.isAdmin && artistselected ? (
+       <Form id="adminFormEditArtist" onSubmit={(event) => this.editArtistDetails(event, artistselected)}>
+           <h4>Edit Artist Details:</h4>
+
+            <label>First Name</label>
+            <input name="firstname" type="text" defaultValue={artistselected.firstname} />
+
+            <label>Last Name</label>
+            <input name="lastname" type="text" defaultValue={artistselected.lastname} />
+
+            <label>Birth Year</label>
+            <input name="birthYear" type="number" defaultValue={artistselected.birthYear} />
+
+            <label>Death Year</label>
+            <input name="deathYear" type="number" defaultValue={artistselected.deathYear} />
+
+            <label>Biography</label>
+            <textarea id="edit-artist-bio" name="bio" type="text" defaultValue={artistselected.biography} />
+
+            <label>Profile Image Url</label>
+            <input name="photoURL" type="text" defaultValue={artistselected.photo} />
+
+              <label>Style Image Url</label>
+             <input name="stylephotoURL" type="text" defaultValue={artistselected.stylePhoto} />
+
+             <label>Profile Photo Credit</label>
+             <input name="photoCred" type="text" defaultValue={artistselected.photoCredit} />
+
+             <label>Category</label>
+             <select name="category" type="text">
+              { this.props.category.filter(cat => cat.id === this.props.artistselected.artistStyleCategoryId)
+               .map(artistCat =>
+               <option selected="selected" disabled value={artistCat.id}> {artistCat.title} </option>
+               )
+               }
+             {
+                 this.props.category.map(cat =>
+                   <option value={cat.id}>{cat.title}</option>)
+             }
+               </select>
+          <div className="edit-artist-buttons">
+           <Button id="update-artist-btn" input color="blue" type="submit"> Update Artist </Button>
+           <Button color="red"  onClick={this.removeArtist}> Remove Artist </Button>
+          </div>
+       </Form>
+      ) :
+     <div />
+  )
+}
 
   render() {
     const numberWithCommas = (x) => {
@@ -162,7 +256,7 @@ getProducts() {
                     <div className="current-artist" key={singleArtist.id}>
                       <div className="artist-view-info">
                         <div className="artist-name-bio">
-                        <div className="artist-view-title"> {singleArtist.fullname} </div>
+                        <div className="artist-view-title"> {singleArtist.fullname} (b.{singleArtist.birthYear} - d.{singleArtist.deathYear}) </div>
                         <div className="artist-view-bio">{singleArtist.biography}</div>
                           { this.props.category.filter(cat => cat.id === this.props.artistselected.artistStyleCategoryId)
                            .map(artistCat =>
@@ -177,82 +271,18 @@ getProducts() {
                     </div>
 
                     {/* =========== artist profile image =========== */}
+
                     <div id="image-edit-uploader-section">
-                        {
-                         this.props.user.isAdmin && artistselected ?
-                          <div>
-                          <h4>edit artist images</h4>
-                            <div id="image-upload-box3">
-                              <div> Update <u>Artist Profile</u> Image: </div>
-                              <input id="upload-image-button" type="file" onChange={this.fileSelectHandler} />
-                              <div id="progressPercent">0%</div>
-                                {
-                                 this.state.storageRef === 0 ?
-                                  <Button disabled color="black" id="fileButton" onClick={this.uploadProfilePhoto}> Upload File </Button>
-                                  :
-                                  <Button color="green" id="fileButton" onClick={this.uploadProfilePhoto}> Upload File </Button>
-                                }
-                              </div>
-                              </div>
-                              :
-                            <div />
-                        }
+                      {this.editArtistImageForm()}
 
-                        {/* =========== artist style image =========== */}
+                      {/* =========== artist style image =========== */}
+                      {this.editArtistStyleImageForm()}
 
-                        {
-                          this.props.user.isAdmin && artistselected ?
-                            <div id="image-upload-box3">
-                              <div> Update <u>Artist Style</u> Image: </div>
-                              <input id="upload-image-button" type="file" onChange={this.fileSelectHandlerForStylePhoto} />
-                              <div id="progressPercent2">0%</div>
-                                {
-                                  this.state.storageRefforStyle === 0 ?
-                                  <Button disabled color="black" id="fileButton2" onClick={this.uploadStylePhoto}> Upload File </Button>
-                                  :
-                                  <Button color="green" id="fileButton2" onClick={this.uploadStylePhoto}> Upload File </Button>
-                                }
-                              </div>
-                              :
-                            <div />
-                        }
-                      </div>
-                    {
-                      this.props.user.isAdmin && artistselected ? (
-                       <Form id="adminFormEditArtist" onSubmit={(event) => this.editArtistDetails(event, artistselected)}>
-                           <h4>Edit Artist Details:</h4>
-                            <label>First Name</label>
-                            <input name="firstname" type="text" defaultValue={artistselected.firstname} />
-                            <label>Last Name</label>
-                            <input name="lastname" type="text" defaultValue={artistselected.lastname} />
-                            <label>Biography</label>
-                            <textarea id="edit-artist-bio" name="bio" type="text" defaultValue={artistselected.biography} />
-                            <label>Profile Image Url</label>
-                            <input name="photoURL" type="text" defaultValue={artistselected.photo} />
-                              <label>Style Image Url</label>
-                             <input name="stylephotoURL" type="text" defaultValue={artistselected.stylePhoto} />
-                             <label>Profile Photo Credit</label>
-                             <input name="photoCred" type="text" defaultValue={artistselected.photoCredit} />
-                             <label>Category</label>
-                             <select name="category" type="text">
-                              { this.props.category.filter(cat => cat.id === this.props.artistselected.artistStyleCategoryId)
-                               .map(artistCat =>
-                               <option selected="selected" disabled value={artistCat.id}> {artistCat.title} </option>
-                               )
-                               }
-                             {
-                                 this.props.category.map(cat =>
-                                   <option value={cat.id}>{cat.title}</option>)
-                             }
-                               </select>
-                          <div className="edit-artist-buttons">
-                           <Button id="update-artist-btn" input color="blue" type="submit"> Update Artist </Button>
-                           <Button color="red"  onClick={this.removeArtist}> Remove Artist </Button>
-                          </div>
-                       </Form>
-                      ) :
-                     <div />
-                    }
+                      {/* =========== artist information forms =========== */}
+                      {this.editArtistInformationForm()}
+
+                    </div>
+
                     <Link id="back-to-artist-button" to={`/artists`}>
                       back to all artists
                     </Link>
@@ -322,18 +352,7 @@ getProducts() {
       );
     }
 
-
-  // ========= Add To Cart ========= \\
-  addToCart(event){
-    event.preventDefault();
-    const quantity = event.target.productQuantity.value
-    const cartId = this.props.carts[0].id
-    const product = this.props.product
-    this.props.addItemToCartThunkCreator(cartId, product, quantity);
-    // event.target.productQuantity.value = '1';
-  }
-
-  // ========= Admin: Remove Product ========= \\
+  // ========= Admin: Remove Artist ========= \\
   removeArtist(event) {
     const { removeArtist, artistselected } = this.props;
     event.stopPropagation()
@@ -358,6 +377,8 @@ getProducts() {
         id: this.props.artistselected.id,
         firstname: event.target.firstname.value,
         lastname: event.target.lastname.value,
+        birthYear: event.target.birthYear.value,
+        deathYear: event.target.deathYear.value,
         biography: event.target.bio.value,
         photo: profilePhoto,
         photoCredit: event.target.photoCred.value,

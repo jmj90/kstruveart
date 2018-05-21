@@ -80,10 +80,17 @@ class SingleProduct extends Component {
                     )
                   )
                 }
-              <div className="product-title">
-                <i>{ product.title }</i>
-              </div>
+              <div className="product-view-title">
+                <i>{ product.title }</i>,{' '}
+                  <div className="product-view-category"> { product.year }</div>
+                </div>
             </Link>
+            <div className="product-view-category">
+              {product.media}
+            </div>
+            <div className="product-view-category">
+              {product.height} x {product.length} inches
+            </div>
               <div className="product-description">
                 { product.description.slice(0,120) + '...' }
               </div>

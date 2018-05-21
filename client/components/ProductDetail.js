@@ -9,6 +9,7 @@ import { Button, Form, Select } from 'semantic-ui-react'
 import history from '../history'
 import AdminToolbar from './AdminToolbar'
 import * as firebase from 'firebase';
+import _ from 'lodash'
 
 
 class ProductDetail extends Component {
@@ -25,6 +26,133 @@ class ProductDetail extends Component {
       this.addToCart = this.addToCart.bind(this)
       this.uploadProductPhoto = this.uploadProductPhoto.bind(this)
       this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  editProductImageForm() {
+    return (
+       //=========== product image ===========
+      <div id="image-edit-uploader-section">
+          {
+           this.props.user.isAdmin && this.props.product ?
+            <div>
+            <h4>edit product image</h4>
+              <div id="image-upload-box3">
+                <div> Update <u>Product</u> Image: </div>
+                <input id="upload-image-button" type="file" onChange={this.fileSelectHandler} />
+                <div id="progressPercent">0%</div>
+                  {
+                   this.state.storageRef === 0 ?
+                    <Button disabled color="black" id="fileButton" onClick={this.uploadProductPhoto}> Upload File </Button>
+                    :
+                    <Button color="green" id="fileButton" onClick={this.uploadProductPhoto}> Upload File </Button>
+                  }
+                </div>
+                </div>
+                :
+              <div />
+          }
+        </div>
+    )
+  }
+
+  editProductDetailsForm() {
+    const {product} = this.props
+    let artistArray = this.props.artist
+    artistArray = _.sortBy(artistArray, 'lastname')
+
+    return (
+        this.props.user.isAdmin && this.props.product ? (
+         <Form id="adminFormEditProduct" onSubmit={(event) => this.editProductDetails(event, product)}>
+             <h4>Edit Product Details:</h4>
+
+              <label>Artist</label>
+              <select className="add-product-form-inputs"  name="artistId" type="text" placeholder="select an artist">
+                  {
+                    this.props.artist.filter(arty => arty.id === this.props.product.artistId)
+                   .map(artyproduct =>
+                   <option selected="selected" disabled value={artyproduct.id}> {artyproduct.fullname} </option>
+                   )
+                   }
+                 {
+                     this.props.artist.map(artistlist =>
+                       <option value={artistlist.id}>{artistlist.fullname}</option>)
+                 }
+              </select>
+
+              <label>Title</label>
+              <input className="add-product-form-inputs" name="title" type="text" defaultValue={product.title} />
+
+              <label>Year</label>
+              <input className="add-product-form-inputs" name="year" type="number" defaultValue={product.year} />
+
+              <label>Media</label>
+              <input className="add-product-form-inputs" name="media" type="text" defaultValue={product.media} />
+
+              <label> Dimensions: </label>
+              <div id="dimensions-box">
+                h: <input className="add-product-form-inputs-dimensions" name="height" type="number" defaultValue={product.height} />
+                w:
+                <input className="add-product-form-inputs-dimensions" name="width" type="number" defaultValue={product.width} />
+                l:
+                <input className="add-product-form-inputs-dimensions" name="length" type="number" defaultValue={product.length} />
+                inches
+              </div>
+
+              <label>inventory Id #:</label>
+              <input className="add-product-form-inputs" name="inventoryId" type="text" defaultValue={product.inventoryId} />
+
+              <label>Price</label>
+              <input name="price" type="number" type="decimal" defaultValue={product.price/100} />
+
+              <label>Edition</label>
+              <input className="add-product-form-inputs" name="edition" type="text" defaultValue={product.edition} />
+
+              <label>Description</label>
+              <textarea id="edit-product-desc" onChange={this.enterpressalert} name="desc" type="text" defaultValue={product.description} />
+
+              <label>Product Type</label>
+              <select className="add-product-form-inputs" name="producttype" type="text" required placeholder="Product Type">
+                <option selected="selected" disabled> {product.producttype} </option>
+                  <option value="book">Book</option>
+                  <option value="catalog">Catalog</option>
+                  <option value="original">Original</option>
+                  <option value="poster">Poster</option>
+                  <option value="print">Print</option>
+                  <option value="sculpture">Sculpture</option>
+                  <option value="other">Other</option>
+                </select>
+
+              <label>Inventory</label>
+              <input name="inventory" type="number" defaultValue={product.inventory} />
+
+              <label>Sold:</label>
+              <select className="add-product-form-inputs" required name="isSoldSelect" type="text">
+                {
+                  product.isSold ?
+                    <option selected>TRUE</option>
+                  :
+                    <option selected>FALSE</option>
+                }
+                {
+                  product.isSold ?
+                    <option>FALSE</option>
+                  :
+                    <option>TRUE</option>
+                }
+              </select>
+
+             <label>Image Url</label>
+             <input name="photoURL" type="text" defaultValue={product.photo} />
+
+             <div className="edit-product-buttons">
+               <Button color="blue" input type="submit"> Update Product </Button>
+               <Button color="red" onClick={this.removeProduct}> Remove Product </Button>
+             </div>
+
+         </Form>
+        ) :
+       <div />
+    )
   }
 
   // ==================== I M A G E  U P L O A D E R ==================== //
@@ -82,7 +210,6 @@ class ProductDetail extends Component {
     }
   }
 
-
   render() {
     const numberWithCommas = (x) => {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -107,18 +234,27 @@ class ProductDetail extends Component {
                             this.props.product ?
                             this.props.artist.filter(singleArtist => product.artistId === singleArtist.id)
                             .map(artist => (
+                              <div id="product-artist-container">
                                 <NavLink to={`/artists/${artist.id}`}>
                                 <div id="artist-name-link">{artist.fullname}</div>
-                              </NavLink>
+                                </NavLink>
+                                <div id="birthdeathyears">(b.{artist.birthYear} - d.{artist.deathYear})</div>
+                              </div>
                               )
                             )
-                            : <div/>
+                            : <div />
                           }
-                        <div className="product-view-title"> {product.title} </div>
-                        <div className="product-view-desc">{product.description}</div>
-                        <div className="product-view-category">category:{' '}
-                          {product.producttype}
-                        </div>
+                        <div className="product-view-title"> {product.title},
+                            <div className="product-view-category"> {product.year} </div>
+                          </div>
+                          <div className="product-view-category">{product.media}</div>
+                          {
+                            product.length !== 0 ?
+                          <div className="product-view-category">{product.height} x {product.width} x {product.length} inches </div>
+                          :
+                          <div className="product-view-category">{product.height} x {product.width} inches</div>
+                          }
+                          <div className="product-view-category">{product.inventoryId}</div>
                         {
                           Number(product.price) === 0 ?
                           <div className="product-view-price">Contact For Price</div>
@@ -137,11 +273,18 @@ class ProductDetail extends Component {
                           :
                           <div />
                         }
+                        <div className="product-view-category">{product.edition}</div>
+                      <div className="product-view-desc">{product.description}</div>
+                        <div className="product-view-category">type:{' '}
+                          {product.producttype}
+                        </div>
                         {
                           product.inventory ?
+                          <div>
                           <a href="mailto:keith@kstruve.com?subject=STRUVE FINE ART : PRODUCT INQUIRY">
                                <Button size="tiny" color="blue">inquire to purchase</Button>
                            </a>
+                         </div>
                           :
                           <div />
                         }
@@ -151,76 +294,10 @@ class ProductDetail extends Component {
                   )
                 }
             </div>
-            {/* =========== product image =========== */}
-            <div id="image-edit-uploader-section">
-                {
-                 this.props.user.isAdmin && product ?
-                  <div>
-                  <h4>edit product image</h4>
-                    <div id="image-upload-box3">
-                      <div> Update <u>Product</u> Image: </div>
-                      <input id="upload-image-button" type="file" onChange={this.fileSelectHandler} />
-                      <div id="progressPercent">0%</div>
-                        {
-                         this.state.storageRef === 0 ?
-                          <Button disabled color="black" id="fileButton" onClick={this.uploadProductPhoto}> Upload File </Button>
-                          :
-                          <Button color="green" id="fileButton" onClick={this.uploadProductPhoto}> Upload File </Button>
-                        }
-                      </div>
-                      </div>
-                      :
-                    <div />
-                }
-              </div>
-            {
-              this.props.user.isAdmin && product ? (
-               <Form id="adminFormEditProduct" onSubmit={(event) => this.editProductDetails(event, product)}>
-                   <h4>Edit Product Details:</h4>
-                     <label>Title</label>
-                     <input name="title" type="text" defaultValue={product.title} />
-                     <label>Description</label>
-                     <textarea id="edit-product-desc" onChange={this.enterpressalert} name="desc" type="text" defaultValue={product.description} />
-                     <label>Price</label>
-                     <input name="price" type="number" type="decimal" defaultValue={product.price/100} />
-                      <label>Category:</label>
-                        <select className="add-product-form-inputs" name="producttype" type="text" required placeholder="Product Type">
-                          <option selected="selected" disabled> {product.producttype} </option>
-                            <option value="book">Book</option>
-                            <option value="catalog">Catalog</option>
-                            <option value="original">Original</option>
-                            <option value="poster">Poster</option>
-                            <option value="print">Print</option>
-                            <option value="Ssulpture">Sculpture</option>
-                            <option value="other">Other</option>
-                          </select>
-                     <label>Inventory</label>
-                     <input name="inventory" type="number" defaultValue={product.inventory} />
-                     <label>Sold:</label>
-                      <select className="add-product-form-inputs" required name="isSoldSelect" type="text">
-                        {
-                          product.isSold ?
-                            <option selected>TRUE</option>
-                          :
-                            <option selected>FALSE</option>
-                        }
-                        {
-                          product.isSold ?
-                            <option>FALSE</option>
-                          :
-                            <option>TRUE</option>
-                        }
-                      </select>
-                     <label>Image Url</label>
-                     <input name="photoURL" type="text" defaultValue={product.photo} />
-                  <div className="edit-product-buttons">
-                   <Button color="blue" input type="submit"> Update Product </Button>
-                   <Button color="red" onClick={this.removeProduct}> Remove Product </Button>
-                  </div>
-               </Form>
-              ) :
-             <div />
-            }
+
+              {this.editProductImageForm()}
+              {this.editProductDetailsForm()}
+
             <div id="back-to-products-btn">
               <NavLink to={`/products`}>
               <div color="red">
@@ -262,9 +339,17 @@ class ProductDetail extends Component {
       {
         id: this.props.product.id,
         title: event.target.title.value,
+        artistId: event.target.artistId.value,
+        year: event.target.year.value,
+        media: event.target.media.value,
+        height: event.target.height.value,
+        width: event.target.width.value,
+        length: event.target.length.value,
+        inventoryId: event.target.inventoryId.value,
+        price: (event.target.price.value * 100),
+        edition: event.target.edition.value,
         description: event.target.desc.value,
         producttype: event.target.producttype.value,
-        price: (event.target.price.value * 100),
         inventory: event.target.inventory.value,
         isSold: event.target.isSoldSelect.value,
         photo: window.imageURLForProduct

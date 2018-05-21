@@ -131,13 +131,16 @@ componentDidMount() {
       {
         firstname: event.target.firstname.value,
         lastname: event.target.lastname.value,
+        birthYear: event.target.birthYear.value,
+        deathYear: event.target.deathYear.value,
         biography: event.target.biography.value,
         photo: window.imageURLforProfilePhoto,
         stylePhoto: window.imageURLforStylePhoto,
-        artistStyleCategoryId: event.target.categorySelect.value
+        artistStyleCategoryId: event.target.categorySelect.value,
+        photoCredit: event.target.photoCred.value
       }
     )
-    console.log(updatedArtist)
+
     this.props.addArtist(updatedArtist);
   }
 
@@ -187,17 +190,31 @@ componentDidMount() {
                     <form id="admin-add-product-form" onSubmit={(event) => this.addNewArtist(event, product)}>
                         <label className="form-label"> First Name: </label>
                         <input className="add-product-form-inputs" name="firstname" type="text" required placeholder="First Name" />
-                          <label className="form-label"> Last Name: </label>
-                          <input className="add-product-form-inputs" name="lastname" type="text" required placeholder="Last Name" />
-                            <label className="form-label"> Category: </label>
-                            <select className="add-product-form-inputs"  name="categorySelect" type="text" placeholder="select an artist">
+
+                        <label className="form-label"> Last Name: </label>
+                        <input className="add-product-form-inputs" name="lastname" type="text" required placeholder="Last Name" />
+
+                        <label className="form-label"> Birth Year: </label>
+                        <input className="add-product-form-inputs" name="birthYear" type="number" placeholder="Birth Year" />
+
+                        <label className="form-label"> Death Year: </label>
+                        <input className="add-product-form-inputs" name="deathYear" type="number" placeholder="Death Year" />
+
+                        <label className="form-label"> Category: </label>
+                        <select className="add-product-form-inputs"  name="categorySelect" type="text" placeholder="select an artist">
+
                               <option selected="selected" disabled> Choose one </option>
                               {
                                 this.props.category.map(cat => <option key={cat.id} value={cat.id}>{cat.title}</option>)
                               }
                             </select>
+
                         <label className="form-label"> Biography: </label>
                         <textarea id="product-description-input" className="add-product-form-inputs" name="biography" type="text" form="admin-add-product-form" placeholder="Enter description here..." />
+
+                        <label className="form-label"> Photo Credit: </label>
+                        <input className="add-product-form-inputs" name="photoCred" type="text" placeholder="photo credit" />
+
                         <Button color="blue" type="submit" id="submitButton" value="Submit"> Add Artist To List </Button>
                       </form>
                       </div>

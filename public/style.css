@@ -43,8 +43,14 @@ textarea {
 }
 
 form div {
-
   display: inline-block;
+}
+
+note {
+  width: 90%;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 #version {
@@ -101,10 +107,11 @@ form div {
 #maincontent {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: #E8E8E8;
-  margin-bottom: 5rem;
+  min-height: 79.4vh;
+  position:relative;
 }
 
 .boundry-message {
@@ -314,7 +321,7 @@ form div {
   border-color: black;
   border-style: solid;
   border-width: thin;
-  width: 240px;
+  width: 100%;
   margin: 1rem;
   padding: 1rem;
 }
@@ -514,6 +521,12 @@ form div {
   background-color: #B92228;
 }
 
+#nav-seperator-2 {
+  height: 1px;
+  width: 1170px;
+  background-color: white;
+}
+
 .ui.input input {
   background-color: white !important;
   color: black !important;
@@ -584,7 +597,7 @@ form div {
   padding: 2rem;
   margin: 1rem;
   min-height: 391px;
-  max-height: 400px;
+  max-height: 500px;
   transition: box-shadow .2s ease;
 }
 
@@ -607,12 +620,14 @@ form div {
 }
 
 .product-title-name {
+  text-align: center;
   color: black;
   font-size: 1.3rem !important;
   margin-top: 1rem;
 }
 
 .product-description {
+  text-align: center;
   padding-bottom: .6rem;
   min-height: 85px;
   max-height: 85px;
@@ -671,7 +686,7 @@ form div {
       display: flex;
       color: #3470B9;
       font-size: 1.1rem;
-      margin-top: 1rem;
+      margin-right: .5rem;
       cursor: pointer;
     }
 
@@ -743,6 +758,15 @@ form div {
       flex-direction: column;
     }
 
+    #product-artist-container {
+      display: flex;
+      align-items: center;
+    }
+
+    #birthdeathyears {
+      font-size: 12px;
+    }
+
     #artist-product-collecton {
       display: flex;
       justify-content: center;
@@ -767,21 +791,23 @@ form div {
     }
 
     .product-view-title {
+      text-align: center;
+      display: flex;
+      justify-content: center;
       font-family: "Trebuchet MS";
-      font-size: 16px;
+      font-size: 14px;
       font-style: italic;
     }
 
     .product-view-price {
       font-size: 20px;
       margin-top: .5rem;
-      margin-bottom: .5rem;
+      margin-bottom: 1rem;
     }
 
     .product-view-desc {
       display: flex;
       justify-content: center;
-      margin-bottom: 1rem;
       text-align: center;
       white-space: pre-line;
     }
@@ -801,6 +827,15 @@ form div {
       justify-content: center;
       align-self: center;
       width: 30%;
+      margin-bottom: 3rem;
+    }
+
+    .ui.blue.button {
+      margin-top: 1rem;
+    }
+
+    .ui.red.button {
+      margin-top: 1rem;
     }
 
 
@@ -960,10 +995,9 @@ form div {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: #E8E8E8;
-  border-top-color: black;
-  border-top-width: thin;
-  border-top-style: solid;
+  background-color: #1B1C1D;
+
+  position: static;
   width: 100%;
   left: 0;
   bottom: 0;
@@ -986,7 +1020,8 @@ form div {
 }
 
 .footer-nav {
-  padding-bottom: 1rem;
+  display: flex;
+  padding-bottom: .4rem;
   padding-top: 2rem;
 }
 
@@ -1006,6 +1041,20 @@ form div {
   transition: color .2s ease;
 }
 
+.Nav-Item-Footer {
+  align-items: center;
+  font-size: 16px;
+  color: white;
+  margin-right: 1em;
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+.Nav-Item-Footer:hover {
+  color: white;
+  text-decoration: underline;
+}
+
 .Nav-Item-Admin:hover {
   color: #C1272D;
 }
@@ -1019,13 +1068,18 @@ form div {
 }
 
 #Nav-Item-Admin-signature {
+  position: relative;
+  display: flex;
+  align-self: flex-end;
   font-family: "Trebuchet MS";
   font-weight: lighter;
   font-size: .7em;
-  color: black;
+  color: white;
   letter-spacing: 2px;
   cursor: pointer;
   transition: color .2s ease;
+  margin-right: 1rem;
+  bottom: 2rem;
 }
 
 #Nav-Item-Admin-signature:hover{
@@ -1171,6 +1225,33 @@ form div {
     border-width: thin;
     background-color: white;
     border-radius: 4px;
+  }
+
+  .add-product-form-inputs-dimensions {
+    display: flex;
+    justify-content: center;
+    width: 10%;
+    height: 40px;
+    border-color: black;
+    border-style: solid;
+    border-width: thin;
+    background-color: white;
+    border-radius: 4px;
+    margin-right: .5rem;
+    margin-left: .5rem;
+  }
+
+  #dimensions-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  #dimensions-box-2 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-left: 4.1rem;
   }
 
   .form-label {
@@ -1378,6 +1459,21 @@ form div {
     color: black;
   }
 
+  .Nav-Item-Footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white !important;
+    margin-right: 1.3em;
+    margin-left: 1.3em;
+    cursor: pointer;
+    transition: color .2s ease;
+  }
+
+  .Nav-Item-Footer:hover {
+    color: black;
+  }
+
   .Nav-Item:hover {
     color: #C1272D;
   }
@@ -1422,7 +1518,7 @@ form div {
     padding: 1rem;
     margin: 1rem;
     min-height: 391px;
-    max-height: 400px;
+    max-height: 500px;
     transition: box-shadow .2s ease;
   }
 
@@ -1610,17 +1706,22 @@ form div {
     padding: 1rem;
     margin: 1rem;
     min-height: 391px;
-    max-height: 400px;
+    max-height: 500px;
     transition: box-shadow .2s ease;
   }
+
+  #admin-toolbar {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      font-family: "Trebuchet MS";
+      background: linear-gradient(#9D4C4A, #9D4C4A);
+      letter-spacing: 2px;
+      padding: .5rem;
+      color: white;
+      box-shadow: 1px 1px 10px grey;
+  }
 }
-
-
-
-
-
-
-
 
 
 @media only screen and (max-width: 750px) {
@@ -1749,7 +1850,7 @@ form div {
         padding: 2rem;
         margin: 1rem;
         min-height: 100px;
-        max-height: 400px;
+        max-height: 500px;
         transition: box-shadow .2s ease;
       }
 
@@ -1785,4 +1886,5 @@ form div {
       #footer-address {
         font-size: 10px;
       }
+
 }

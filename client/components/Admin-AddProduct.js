@@ -95,14 +95,21 @@ handleInputChange(event) {
     const updatedproduct = Object.assign({}, product,
       {
         title: event.target.title.value,
+        artistId: event.target.artistSelect.value,
+        year: event.target.year.value,
+        media: event.target.media.value,
+        height: event.target.height.value,
+        width: event.target.width.value,
+        length: event.target.length.value,
+        inventoryId: event.target.inventoryId.value,
+        price: (event.target.price.value * 100),
+        edition: event.target.edition.value,
         description: event.target.desc.value,
         producttype: event.target.producttype.value,
-        price: (event.target.price.value * 100),
         saleType: event.target.saletype.value,
         inventory: event.target.inventory.value,
         isSold: this.state.isSoldToggle,
-        photo: window.imageURLforThing,
-        artistId: event.target.artistSelect.value
+        photo: window.imageURLforThing
       }
     )
     console.log(updatedproduct)
@@ -113,14 +120,6 @@ handleInputChange(event) {
     const { product } = this.props
     let artistArray = this.props.artist
     artistArray = _.sortBy(artistArray, 'lastname')
-    console.log('artits', artistArray)
-
-    function sortByKey(array, key) {
-      return array.sort(function(a, b) {
-        var x = a[key]; var y = b[key];
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-    });
-}
 
     return (
       <div>
@@ -147,18 +146,45 @@ handleInputChange(event) {
                         }
                       </div>
                     <form id="admin-add-product-form" onSubmit={(event) => this.addNewProduct(event, product)}>
+
                         <label className="form-label"> Title: </label>
                         <input className="add-product-form-inputs" name="title" type="text" required placeholder="Product title" />
+
                         <label className="form-label"> Artist </label>
                         <select className="add-product-form-inputs"  name="artistSelect" type="text" placeholder="select an artist">
                           <option selected="selected" disabled> Choose one </option>
-                          {console.log('arty array', artistArray)}
                           {
                             artistArray.map(artist => <option key={artist.id} value={artist.id}>{artist.fullname}</option>)
                           }
                         </select>
+
+                        <label className="form-label"> Year: </label>
+                        <input className="add-product-form-inputs" name="year" type="text" placeholder="Product year" />
+
+                        <label className="form-label"> Media: </label>
+                        <input className="add-product-form-inputs" name="media" type="text" placeholder="Media Type" />
+
+                        <label className="form-label"> Dimensions: </label>
+                        <note>* if there is no height, width, or length to an item, enter 0 as the value</note>
+                        <div id="dimensions-box-2">
+                          h: <input className="add-product-form-inputs-dimensions" name="height" type="number"  placeholder="Height" defaultValue={0} />
+                          w: <input className="add-product-form-inputs-dimensions" name="width" type="number"  placeholder="Width" defaultValue={0}  />
+                          l: <input className="add-product-form-inputs-dimensions" name="length" type="number" placeholder="Length" defaultValue={0} />
+                          inches
+                          </div>
+
+                        <label className="form-label"> inventory ID #:</label>
+                        <input className="add-product-form-inputs" name="inventoryId" type="text" placeholder="inventory ID #" />
+
+                        <label className="form-label"> Price: </label>
+                        <input className="add-product-form-inputs" name="price" type="decimal" placeholder="Enter price: format('999.99')" />
+
+                        <label className="form-label"> Edition</label>
+                        <input className="add-product-form-inputs" name="edition" type="text" placeholder="edition" />
+
                         <label className="form-label"> Description: </label>
                         <textarea id="product-description-input" className="add-product-form-inputs" name="desc" type="text" form="admin-add-product-form" placeholder="Enter description here..." />
+
                         <label className="form-label"> Product Type: </label>
                         <select className="add-product-form-inputs" name="producttype" type="text" required placeholder="Product Type">
                           <option selected="selected" disabled> Choose one </option>
@@ -170,16 +196,16 @@ handleInputChange(event) {
                             <option value="sculpture">Sculpture</option>
                             <option value="other">Other</option>
                           </select>
-                        <label className="form-label"> Price: </label>
-                        <input className="add-product-form-inputs" name="price" type="decimal" placeholder="Enter price: format('999.99')" />
+
                         <label className="form-label"> Sale Type: </label>
                           <select className="add-product-form-inputs" name="saletype" type="text" required>
                             <option selected="selected" disabled> Choose one </option>
-                              <option value="Online Order">Online Order</option>
+                            <option value="Online Order">Online Order</option>
                               <option value="Contact For Sale">Contact For Sale</option>
                               <option value="Other">Other</option>
                           </select>
-                        <label className="form-label"> Inventory: </label>
+
+                        <label className="form-label"> Inventory Amount: </label>
                         <input className="add-product-form-inputs"  name="inventory" type="number" required placeholder="Enter inventory" />
                           <label className="form-label"> SOLD:
                             <input
