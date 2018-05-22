@@ -116,6 +116,7 @@ class ProductDetail extends Component {
                   <option value="book">Book</option>
                   <option value="catalog">Catalog</option>
                   <option value="original">Original</option>
+                  <option value="painting">Print</option>
                   <option value="poster">Poster</option>
                   <option value="print">Print</option>
                   <option value="sculpture">Sculpture</option>
