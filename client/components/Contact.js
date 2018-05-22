@@ -24,7 +24,7 @@ class Contact extends Component {
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
           </div>
-                <div className="title">C O N T A C T</div>
+                <div className="title"> Contact </div>
                 <div id="contact-viewport">
                 <div className="contact-card">
                 <div>Keith Struve</div>

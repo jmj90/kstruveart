@@ -9,8 +9,7 @@ import history from '../history'
 import AdminToolbar from './AdminToolbar'
 import _ from 'lodash'
 
-class AdminArtistQuicklist extends Component {
-
+class ArtistsBlockList extends Component {
 
   getArtists(categoryId) {
     const {artist, artistStyleCategoryId } = this.props
@@ -18,17 +17,19 @@ class AdminArtistQuicklist extends Component {
     artistList = _.sortBy(artistList, "lastname")
 
     return (
-      <div id="artist-quicklist">
-        <div><b>Artist Count:</b> {artistList.length}</div>
+      <div className="artist-list-block-style">
         {
             artistList.map(singleartist =>
-              <div key={singleartist.id} className="artist-tile-2">
+              <div key={singleartist.id} className="artist-block">
                 <a href={`/artists/${singleartist.id}`}>
-                  <div className="artist-name-list-quickview">
-                    {`${singleartist.lastname}, ${singleartist.firstname}`}
+                  <div id="artist-photo-container">
+                    <img id="artist-photo-list" src={singleartist.stylePhoto} />
+                  </div>
+                  <div className="artist-name-list-2">
+                    {`${singleartist.firstname} ${singleartist.lastname}`}
                   </div>
               </a>
-            </div>
+              </div>
             )
           }
       </div>
@@ -62,17 +63,10 @@ class AdminArtistQuicklist extends Component {
         <div id="maincontent">
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
-              <div id="artist-count-list">
-                <div>Artist Quick List</div>
-                </div>
-                   </div>
-                   {
-                   filterSwitch ?
-                    this.getArtists(filterSwitch)
-                    :
-                    this.getArtists()
-                  }
-                  </div>
+          </div>
+                <div className="title"> Artists </div>
+                    {this.getArtists()}
+              </div>
         <Footer />
       </div>
     )
@@ -81,8 +75,6 @@ class AdminArtistQuicklist extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products,
-    product: state.product,
     artist: state.artist,
     category: state.category,
     user: state.user
@@ -91,4 +83,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminArtistQuicklist);
+export default connect(mapStateToProps, mapDispatchToProps)(ArtistsBlockList);

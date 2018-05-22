@@ -26,7 +26,6 @@ class ArtistDetail extends Component {
       this.editArtistDetails = this.editArtistDetails.bind(this);
       this.removeArtist = this.removeArtist.bind(this)
       this.removeProduct = this.removeProduct.bind(this);
-      this.createACategory = this.createACategory.bind(this)
       this.uploadProfilePhoto = this.uploadProfilePhoto.bind(this)
       this.uploadStylePhoto = this.uploadStylePhoto.bind(this);
   }
@@ -294,7 +293,7 @@ editArtistInformationForm(){
 
               {/*   A R T I S T   P R O D U C T S  / A R T W O R K   A R E A   */}
               <div id="artist-product-container">
-                <div className="title">Artists Items</div>
+                <div className="title">Available Works</div>
                   <div id="artist-product-collecton">
             {
               this.props.products && this.props.artistselected ?
@@ -310,6 +309,9 @@ editArtistInformationForm(){
                       { product.title }
                     </div>
                   </Link>
+                  <div className="artist-product-category">
+                    {product.media}
+                  </div>
                     <div className="artist-product-description">
                       { product.description.slice(0, 120) + '...' }
                     </div>
@@ -388,17 +390,6 @@ editArtistInformationForm(){
     )
     this.props.updateArtist(updatedArtist);
     window.location.reload()
-  }
-
-  // ========= Admin: Create Category ========= \\
-  createACategory(event) {
-    event.preventDefault();
-    const category = {
-      id: this.props.category.id,
-      categoryName: event.target.category.value,
-    };
-    this.props.addCategory(category);
-    event.target.category.value = '';
   }
 
 }

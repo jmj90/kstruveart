@@ -79,7 +79,6 @@ class Category extends Component {
         <div>
           { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
         </div>
-        <Carousel />
                 <div className="title">A R T I S T S</div>
                 <div id="artist-scroller-div">
                   <div id="filter-list">

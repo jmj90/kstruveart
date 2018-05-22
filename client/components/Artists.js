@@ -105,7 +105,6 @@ class Artists extends Component {
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
           </div>
-                <Carousel />
                 <div className="title">A R T I S T S</div>
                 <div id="artist-scroller-div">
                   <div id="filter-list">
@@ -156,33 +155,15 @@ class Artists extends Component {
                   }
                   </div>
               </div>
-              <div className="title">All Items</div>
-                {this.getProducts()}
             </div>
         <Footer />
       </div>
-    )
-  }
-
-  getProducts() {
-    return (
-      <div className="productsDisplay">
-        <div className="productView">
-        {
-          this.props.products ?
-            this.props.products
-              .map(product => <SingleProduct key={product.id} product={product} />) : <div />
-        }
-      </div>
-    </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products,
-    product: state.product,
     artist: state.artist,
     category: state.category,
     user: state.user

@@ -21,7 +21,7 @@ class AdminProductQuicklist extends Component {
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
           </div>
-              <div id="artist-count-list">Product Quicklist</div>
+              <div id="artist-count-list">Product Quick List</div>
                 {this.getProducts()}
             </div>
         <Footer />

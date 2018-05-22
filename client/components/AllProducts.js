@@ -28,6 +28,7 @@ class AllProducts extends Component {
         <div>
             { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
         </div>
+        <div className="title"> Available Works </div>
           {this.getProducts()}
       </div>
         <Footer />

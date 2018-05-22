@@ -1,5 +1,4 @@
 import React from 'react'
-// import {Nav, Footer} from './components'
 import Routes from './routes'
 
 

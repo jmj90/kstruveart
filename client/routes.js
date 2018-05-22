@@ -21,6 +21,7 @@ import {
   AdminArtistQuicklist,
   AdminProductQuicklist,
   ResetPassword,
+  ArtistsBlockList,
   Home
 } from './components'
 import SearchBar from './components/search'
@@ -46,9 +47,10 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-         <Route exact path="/" component={Artists} />
+         <Route exact path="/" component={ArtistsBlockList} />
       {/*   <Route exact path="/" component={Construction} /> */}
-        <Route exact path="/artists" component={Artists} />
+        {/* <Route exact path="/artists" component={Artists} /> */}
+        <Route exact path="/artists" component={ArtistsBlockList} />
         <Route exact path="/artists/:id" component={ArtistDetail} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/:id" component={ProductDetail} />
@@ -71,7 +73,7 @@ class Routes extends Component {
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
-        <Route component={Artists} />
+        <Route component={ArtistsBlockList} />
       </Switch>
     )
   }
