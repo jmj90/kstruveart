@@ -89,10 +89,10 @@ class SingleProduct extends Component {
               {product.media}
             </div>
             <div className="product-view-category">
-              {product.height} x {product.length} inches
+              {product.length} x {product.width} x {product.height} inches
             </div>
               <div className="product-description">
-                { product.description.slice(0,120) + '...' }
+                { product.description.slice(0, 120) + '...' }
               </div>
               {
                 Number(product.price) === 0 ?

@@ -37,13 +37,17 @@ class AllProducts extends Component {
   }
 
   getProducts() {
+    let productsArray = this.props.products
+    productsArray = _.sortBy(productsArray, function(o) {
+      return o.artist.lastname
+    })
+
     return (
       <div className="productsDisplay">
         <div className="productView">
         {
           this.props.products ?
-            this.props.products
-              .map(product => <SingleProduct key={product.id} product={product} />) : <div />
+            productsArray.map(product => <SingleProduct key={product.id} product={product} />) : <div />
         }
       </div>
     </div>

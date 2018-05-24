@@ -255,7 +255,7 @@ editArtistInformationForm(){
                     <div className="current-artist" key={singleArtist.id}>
                       <div className="artist-view-info">
                         <div className="artist-name-bio">
-                        <div className="artist-view-title"> {singleArtist.fullname} (b.{singleArtist.birthYear} - d.{singleArtist.deathYear}) </div>
+                        <div className="artist-view-title"> {singleArtist.fullname} ({singleArtist.lifeSpan}) </div>
                         <div className="artist-view-bio">{singleArtist.biography}</div>
                           { this.props.category.filter(cat => cat.id === this.props.artistselected.artistStyleCategoryId)
                            .map(artistCat =>
@@ -294,7 +294,7 @@ editArtistInformationForm(){
               {/*   A R T I S T   P R O D U C T S  / A R T W O R K   A R E A   */}
               <div id="artist-product-container">
                 <div className="title">Available Works</div>
-                  <div id="artist-product-collecton">
+                  <div id="artist-product-collection">
             {
               this.props.products && this.props.artistselected ?
               this.props.products.filter(product => product.artistId === this.props.artistselected.id)

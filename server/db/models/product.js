@@ -16,13 +16,13 @@ const Product = db.define('product', {
     type: Sequelize.STRING
   },
   height: {
-    type: Sequelize.INTEGER
+    type: Sequelize.DECIMAL
   },
   length: {
-    type: Sequelize.INTEGER
+    type: Sequelize.DECIMAL
   },
   width: {
-    type: Sequelize.INTEGER
+    type: Sequelize.DECIMAL
   },
   price: {
     type: Sequelize.INTEGER
@@ -36,17 +36,9 @@ const Product = db.define('product', {
   edition: {
     type: Sequelize.STRING
   },
-  saleType: {
-    type:   Sequelize.ENUM,
-    defaultValue: null,
-    values: [ 'Online Order', 'Contact For Sale', 'Other']
-  },
   isSold: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
-  },
-  inventory: {
-    type: Sequelize.INTEGER
   },
   inventoryId: {
     type: Sequelize.STRING

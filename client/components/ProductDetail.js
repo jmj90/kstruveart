@@ -55,6 +55,14 @@ class ProductDetail extends Component {
     )
   }
 
+  convertToCM(h,w,l) {
+    h = h * 2.54
+    w = w * 2.54
+    l = l * 2.54
+    let converted  = `${h} x ${w} x ${l} cm`
+    return (converted)
+  }
+
   editProductDetailsForm() {
     const {product} = this.props
     let artistArray = this.props.artist
@@ -74,8 +82,7 @@ class ProductDetail extends Component {
                    )
                    }
                  {
-                     this.props.artist.map(artistlist =>
-                       <option value={artistlist.id}>{artistlist.fullname}</option>)
+                       artistArray.map(artist => <option key={artist.id} value={artist.id}>{artist.lastname}, {artist.firstname}</option>)
                  }
               </select>
 
@@ -88,13 +95,11 @@ class ProductDetail extends Component {
               <label>Media</label>
               <input className="add-product-form-inputs" name="media" type="text" defaultValue={product.media} />
 
-              <label> Dimensions: </label>
+              <label> Dimensions: (Length x Width x Height)</label>
               <div id="dimensions-box">
+                l: <input className="add-product-form-inputs-dimensions" name="length" type="number" defaultValue={product.length} />
+                w: <input className="add-product-form-inputs-dimensions" name="width" type="number" defaultValue={product.width} />
                 h: <input className="add-product-form-inputs-dimensions" name="height" type="number" defaultValue={product.height} />
-                w:
-                <input className="add-product-form-inputs-dimensions" name="width" type="number" defaultValue={product.width} />
-                l:
-                <input className="add-product-form-inputs-dimensions" name="length" type="number" defaultValue={product.length} />
                 inches
               </div>
 
@@ -111,20 +116,7 @@ class ProductDetail extends Component {
               <textarea id="edit-product-desc" onChange={this.enterpressalert} name="desc" type="text" defaultValue={product.description} />
 
               <label>Product Type</label>
-              <select className="add-product-form-inputs" name="producttype" type="text" required placeholder="Product Type">
-                <option selected="selected" disabled> {product.producttype} </option>
-                  <option value="book">Book</option>
-                  <option value="catalog">Catalog</option>
-                  <option value="original">Original</option>
-                  <option value="painting">Painting</option>
-                  <option value="poster">Poster</option>
-                  <option value="print">Print</option>
-                  <option value="sculpture">Sculpture</option>
-                  <option value="other">Other</option>
-                </select>
-
-              <label>Inventory</label>
-              <input name="inventory" type="number" defaultValue={product.inventory} />
+              <input className="add-product-form-inputs" name="producttype" type="text" defaultValue={product.producttype} />
 
               <label>Sold:</label>
               <select className="add-product-form-inputs" required name="isSoldSelect" type="text">
@@ -229,7 +221,7 @@ class ProductDetail extends Component {
               this.props.products.filter(product => product.id === this.props.product.id)
                 .map(product => (
                     <div className="current-product" key={product.id}>
-                      <img className="product-view-image" src={product.photo} onClick={()=>window.location.assign(`${product.photo}`)}/>
+                      <img className="product-view-image" src={product.photo} onClick={() => window.location.assign(`${product.photo}`)} />
                       <div className="product-view-info">
                           {
                             this.props.product ?
@@ -239,7 +231,7 @@ class ProductDetail extends Component {
                                 <NavLink to={`/artists/${artist.id}`}>
                                 <div id="artist-name-link">{artist.fullname}</div>
                                 </NavLink>
-                                <div id="birthdeathyears">(b.{artist.birthYear} - d.{artist.deathYear})</div>
+                                <div id="birthdeathyears">({artist.lifeSpan})</div>
                               </div>
                               )
                             )
@@ -249,12 +241,10 @@ class ProductDetail extends Component {
                             <div className="product-view-category"> {product.year} </div>
                           </div>
                           <div className="product-view-category">{product.media}</div>
-                          {
-                            product.length !== 0 ?
-                          <div className="product-view-category">{product.height} x {product.width} x {product.length} inches </div>
-                          :
-                          <div className="product-view-category">{product.height} x {product.width} inches</div>
-                          }
+
+                          <div className="product-view-category">{product.length} x {product.width} x {product.height} inches </div>
+                          <div className="product-view-category">{this.convertToCM(product.height, product.width, product.length)}</div>
+
                           <div className="product-view-category">{product.inventoryId}</div>
                         {
                           Number(product.price) === 0 ?
@@ -280,7 +270,7 @@ class ProductDetail extends Component {
                           {product.producttype}
                         </div>
                         {
-                          product.inventory ?
+                          !product.isSold ?
                           <div>
                           <a href="mailto:keith@kstruve.com?subject=STRUVE FINE ART : PRODUCT INQUIRY">
                                <Button size="tiny" color="blue">inquire to purchase</Button>
@@ -343,15 +333,14 @@ class ProductDetail extends Component {
         artistId: event.target.artistId.value,
         year: event.target.year.value,
         media: event.target.media.value,
-        height: event.target.height.value,
-        width: event.target.width.value,
         length: event.target.length.value,
+        width: event.target.width.value,
+        height: event.target.height.value,
         inventoryId: event.target.inventoryId.value,
         price: (event.target.price.value * 100),
         edition: event.target.edition.value,
         description: event.target.desc.value,
         producttype: event.target.producttype.value,
-        inventory: event.target.inventory.value,
         isSold: event.target.isSoldSelect.value,
         photo: window.imageURLForProduct
       }

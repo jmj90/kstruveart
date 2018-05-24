@@ -195,13 +195,13 @@ componentDidMount() {
                         <input className="add-product-form-inputs" name="lastname" type="text" required placeholder="Last Name" />
 
                         <label className="form-label"> Birth Year: </label>
-                        <input className="add-product-form-inputs" name="birthYear" type="number" placeholder="Birth Year" />
+                        <input className="add-product-form-inputs" name="birthYear" type="number" defaultValue=" " placeholder="Birth Year" />
 
                         <label className="form-label"> Death Year: </label>
-                        <input className="add-product-form-inputs" name="deathYear" type="number" placeholder="Death Year" />
+                        <input className="add-product-form-inputs" name="deathYear" type="number" defaultValue=" " placeholder="Death Year" />
 
                         <label className="form-label"> Category: </label>
-                        <select className="add-product-form-inputs"  name="categorySelect" type="text" placeholder="select an artist">
+                        <select className="add-product-form-inputs"  name="categorySelect" type="text" required>
 
                               <option selected="selected" disabled> Choose one </option>
                               {

@@ -1,6 +1,5 @@
 const router = require('express').Router()
-const { Category, Product, Review } = require('../db/models')
-const Promise = require('bluebird')
+const { Artist, Product } = require('../db/models')
 
 module.exports = router
 
@@ -13,7 +12,11 @@ const adminGateway = (req, res, next) => {
 }
 
 router.get('/', (req, res, next) => {
-  Product.findAll()
+  Product.findAll({
+    include: [{
+      model: Artist
+    }]
+  })
     .then(products => res.json(products))
     .catch(next)
 })

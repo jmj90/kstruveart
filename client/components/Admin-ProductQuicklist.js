@@ -31,8 +31,13 @@ class AdminProductQuicklist extends Component {
 
   getProducts() {
     const {products, artistStyleCategoryId } = this.props
+
     let productList = this.props.products
-    productList = _.sortBy(productList, "title")
+    productList = _.sortBy(productList, function(o) {
+      return o.artist.lastname
+    })
+
+
     return (
       <div id="artist-quicklist">
         <div><b>Product Count:</b> {productList.length}</div>
@@ -40,21 +45,21 @@ class AdminProductQuicklist extends Component {
         {
           productList ?
             productList.map(product =>
-                <div key={product.id} className="product-tile">
-                  <NavLink className="artist-name-list-quickview" to={`/products/${product.id}`}>
+              (<div key={product.id} className="product-tile">
+                    {
+                      this.props.artist.filter(singleArtist => product.artistId === singleArtist.id)
+                      .map(artist => (
+                          <div>
+                          {artist.lastname}, {artist.firstname}
+                        </div>
+                        )
+                      )
+                    }
+                    <NavLink className="artist-name-list-quickview" to={`/products/${product.id}`}>
                     {product.title}
                   </NavLink>
-                  <div id="spacer">------------</div>
-                  {
-                    this.props.artist.filter(singleArtist => product.artistId === singleArtist.id)
-                    .map(artist => (
-                        <div>
-                        {artist.fullname}
-                      </div>
-                      )
-                    )
-                  }
-                </div>
+
+                </div>)
                 )
                 : <div />
              }

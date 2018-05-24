@@ -92,22 +92,27 @@ handleInputChange(event) {
   addNewProduct(event, product) {
     event.preventDefault();
 
+    let productType;
+    if (event.target.producttype.value === 'null'){
+      productType = event.target.producttype2.value.toLowerCase()
+    } else {
+      productType = event.target.producttype.value
+    }
+
     const updatedproduct = Object.assign({}, product,
       {
         title: event.target.title.value,
         artistId: event.target.artistSelect.value,
         year: event.target.year.value,
         media: event.target.media.value,
-        height: event.target.height.value,
-        width: event.target.width.value,
         length: event.target.length.value,
+        width: event.target.width.value,
+        height: event.target.height.value,
         inventoryId: event.target.inventoryId.value,
         price: (event.target.price.value * 100),
         edition: event.target.edition.value,
         description: event.target.desc.value,
-        producttype: event.target.producttype.value,
-        saleType: event.target.saletype.value,
-        inventory: event.target.inventory.value,
+        producttype: productType,
         isSold: this.state.isSoldToggle,
         photo: window.imageURLforThing
       }
@@ -154,7 +159,7 @@ handleInputChange(event) {
                         <select className="add-product-form-inputs"  name="artistSelect" type="text" placeholder="select an artist">
                           <option selected="selected" disabled> Choose one </option>
                           {
-                            artistArray.map(artist => <option key={artist.id} value={artist.id}>{artist.fullname}</option>)
+                            artistArray.map(artist => <option key={artist.id} value={artist.id}>{artist.lastname}, {artist.firstname}</option>)
                           }
                         </select>
 
@@ -164,12 +169,12 @@ handleInputChange(event) {
                         <label className="form-label"> Media: </label>
                         <input className="add-product-form-inputs" name="media" type="text" placeholder="Media Type" />
 
-                        <label className="form-label"> Dimensions: </label>
-                        <note>* if there is no height, width, or length to an item, enter 0 as the value</note>
+                        <label className="form-label"> Dimensions: (Length x Width x Height) </label>
+                        <note>* if there is no length, width, or height to an item, enter 0 as the value</note>
                         <div id="dimensions-box-2">
-                          h: <input className="add-product-form-inputs-dimensions" name="height" type="number"  placeholder="Height" defaultValue={0} />
-                          w: <input className="add-product-form-inputs-dimensions" name="width" type="number"  placeholder="Width" defaultValue={0}  />
-                          l: <input className="add-product-form-inputs-dimensions" name="length" type="number" placeholder="Length" defaultValue={0} />
+                          l: <input className="add-product-form-inputs-dimensions" name="length" type="decimal" placeholder="Length" defaultValue={0} />
+                          w: <input className="add-product-form-inputs-dimensions" name="width" type="decimal"  placeholder="Width" defaultValue={0}  />
+                          h: <input className="add-product-form-inputs-dimensions" name="height" type="decimal"  placeholder="Height" defaultValue={0} />
                           inches
                           </div>
 
@@ -186,8 +191,8 @@ handleInputChange(event) {
                         <textarea id="product-description-input" className="add-product-form-inputs" name="desc" type="text" form="admin-add-product-form" placeholder="Enter description here..." />
 
                         <label className="form-label"> Product Type: </label>
-                        <select className="add-product-form-inputs" name="producttype" type="text" required placeholder="Product Type">
-                          <option selected="selected" disabled> Choose one </option>
+                          <select className="add-product-form-inputs" name="producttype" type="text" placeholder="Product Type">
+                            <option selected="selected" value="null" disabled> Choose one </option>
                             <option value="book">Book</option>
                             <option value="catalog">Catalog</option>
                             <option value="original">Original</option>
@@ -197,17 +202,9 @@ handleInputChange(event) {
                             <option value="sculpture">Sculpture</option>
                             <option value="other">Other</option>
                           </select>
+                          or
+                        <input className="add-product-form-inputs" name="producttype2" type="text" placeholder="Product Type" />
 
-                        <label className="form-label"> Sale Type: </label>
-                          <select className="add-product-form-inputs" name="saletype" type="text" required>
-                            <option selected="selected" disabled> Choose one </option>
-                            <option value="Online Order">Online Order</option>
-                              <option value="Contact For Sale">Contact For Sale</option>
-                              <option value="Other">Other</option>
-                          </select>
-
-                        <label className="form-label"> Inventory Amount: </label>
-                        <input className="add-product-form-inputs"  name="inventory" type="number" required placeholder="Enter inventory" />
                           <label className="form-label"> SOLD:
                             <input
                               type="checkbox"
