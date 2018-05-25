@@ -11,7 +11,7 @@ let Nav = ({ handleClick, isLoggedIn }) => {
 
   return (
     <div>
-      <div id="version">v1.32</div>
+      <div id="version">v1.33</div>
       <div className="Nav-Nav">
         <img id="navlogo" src="/images/mainlogo4.png" />
         <a href="/artists"  className="Nav-Item"> artists </a>

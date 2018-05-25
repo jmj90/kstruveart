@@ -56,9 +56,9 @@ class ProductDetail extends Component {
   }
 
   convertToCM(h,w,l) {
-    h = h * 2.54
-    w = w * 2.54
-    l = l * 2.54
+    h = (h * 2.54).toFixed(2)
+    w = (w * 2.54).toFixed(2)
+    l = (l * 2.54).toFixed(2)
     let converted  = `${h} x ${w} x ${l} cm`
     return (converted)
   }
@@ -95,11 +95,11 @@ class ProductDetail extends Component {
               <label>Media</label>
               <input className="add-product-form-inputs" name="media" type="text" defaultValue={product.media} />
 
-              <label> Dimensions: (Length x Width x Height)</label>
+              <label> Dimensions: (Height x Width x Depth)</label>
               <div id="dimensions-box">
-                l: <input className="add-product-form-inputs-dimensions" name="length" type="number" defaultValue={product.length} />
-                w: <input className="add-product-form-inputs-dimensions" name="width" type="number" defaultValue={product.width} />
-                h: <input className="add-product-form-inputs-dimensions" name="height" type="number" defaultValue={product.height} />
+                h: <input className="add-product-form-inputs-dimensions" name="height" type="decimal" defaultValue={product.height} />
+                w: <input className="add-product-form-inputs-dimensions" name="width" type="decimal" defaultValue={product.width} />
+                d: <input className="add-product-form-inputs-dimensions" name="length" type="decimal" defaultValue={product.length} />
                 inches
               </div>
 
@@ -333,9 +333,9 @@ class ProductDetail extends Component {
         artistId: event.target.artistId.value,
         year: event.target.year.value,
         media: event.target.media.value,
-        length: event.target.length.value,
-        width: event.target.width.value,
         height: event.target.height.value,
+        width: event.target.width.value,
+        length: event.target.length.value,
         inventoryId: event.target.inventoryId.value,
         price: (event.target.price.value * 100),
         edition: event.target.edition.value,

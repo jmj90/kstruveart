@@ -105,9 +105,9 @@ handleInputChange(event) {
         artistId: event.target.artistSelect.value,
         year: event.target.year.value,
         media: event.target.media.value,
-        length: event.target.length.value,
-        width: event.target.width.value,
         height: event.target.height.value,
+        width: event.target.width.value,
+        length: event.target.length.value,
         inventoryId: event.target.inventoryId.value,
         price: (event.target.price.value * 100),
         edition: event.target.edition.value,
@@ -169,12 +169,12 @@ handleInputChange(event) {
                         <label className="form-label"> Media: </label>
                         <input className="add-product-form-inputs" name="media" type="text" placeholder="Media Type" />
 
-                        <label className="form-label"> Dimensions: (Length x Width x Height) </label>
-                        <note>* if there is no length, width, or height to an item, enter 0 as the value</note>
+                        <label className="form-label"> Dimensions: (Height x Width x Depth) </label>
+                        <note>* if there is no height, width, or depth to an item, enter 0 as the value</note>
                         <div id="dimensions-box-2">
-                          l: <input className="add-product-form-inputs-dimensions" name="length" type="decimal" placeholder="Length" defaultValue={0} />
-                          w: <input className="add-product-form-inputs-dimensions" name="width" type="decimal"  placeholder="Width" defaultValue={0}  />
                           h: <input className="add-product-form-inputs-dimensions" name="height" type="decimal"  placeholder="Height" defaultValue={0} />
+                          w: <input className="add-product-form-inputs-dimensions" name="width" type="decimal"  placeholder="Width" defaultValue={0}  />
+                          d: <input className="add-product-form-inputs-dimensions" name="length" type="decimal" placeholder="Depth" defaultValue={0} />
                           inches
                           </div>
 
