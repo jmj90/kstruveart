@@ -242,7 +242,7 @@ class ProductDetail extends Component {
                           </div>
                           <div className="product-view-category">{product.media}</div>
 
-                          <div className="product-view-category">{product.length} x {product.width} x {product.height} inches </div>
+                          <div className="product-view-category">{product.height} x {product.width} x {product.length} inches </div>
                           <div className="product-view-category">{this.convertToCM(product.height, product.width, product.length)}</div>
 
                           <div className="product-view-category">{product.inventoryId}</div>
