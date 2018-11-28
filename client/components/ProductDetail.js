@@ -138,7 +138,7 @@ class ProductDetail extends Component {
              <input name="photoURL" type="text" defaultValue={product.photo} />
 
              <div className="edit-product-buttons">
-               <Button color="blue" input type="submit"> Update Product </Button>
+               <Button color="blue" type="submit"> Update Product </Button>
                <Button color="red" onClick={this.removeProduct}> Remove Product </Button>
              </div>
 

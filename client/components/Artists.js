@@ -39,7 +39,7 @@ class Artists extends Component {
         {
           categoryId ?
           artistList.filter(singleartist => singleartist.artistStyleCategoryId === categoryId).map(singleartist =>
-            <div key={singleartist.id} className="artist-tile">
+            (<div key={singleartist.id} className="artist-tile">
               <a href={`/artists/${singleartist.id}`}>
               <div id="artist-title-bar-name-photo">
                 <div className="artist-name-list">
@@ -51,11 +51,11 @@ class Artists extends Component {
                 {singleartist.biography}
               </div>
             </a>
-            </div>
+          </div>)
           )
             :
             artistList.map(singleartist =>
-              <div key={singleartist.id} className="artist-tile">
+              (<div key={singleartist.id} className="artist-tile">
                 <a href={`/artists/${singleartist.id}`}>
                 <div id="artist-title-bar-name-photo">
                   <div className="artist-name-list">
@@ -69,7 +69,7 @@ class Artists extends Component {
                   {singleartist.biography}
                 </div>
               </a>
-              </div>
+              </div>)
             )
           }
       </div>
@@ -101,6 +101,7 @@ class Artists extends Component {
       <div>
         <Nav />
         {this.carousel()}
+        {this.expandMenu()}
         <div id="maincontent">
           <div>
               { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }

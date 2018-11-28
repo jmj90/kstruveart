@@ -43,16 +43,18 @@ handleInputChange(event) {
 // ==================== I M A G E  U P L O A D E R ==================== //
 
   fileSelectHandler = event => {
+    //first
     let file = event.target.files[0]
+    //then prepping storage ref
     let fbStorageRef = firebase.storage().ref('product_images/' + file.name)
-
+    // setting state with these properties to allow progress bar to work
     this.setState((prevState, props) => ({
       selectedFile: file,
       storageRef: fbStorageRef
     }))
 
   }
-
+  // uploading file and updating progressbar on progress function
   uploadFile() {
     let file = this.state.selectedFile
     let storageRef = this.state.storageRef
@@ -150,7 +152,7 @@ handleInputChange(event) {
                           <Button color="green" id="fileButton" onClick={this.uploadFile}> Upload File </Button>
                         }
                       </div>
-                    <form id="admin-add-product-form" onSubmit={(event) => this.addNewProduct(event, product)}>
+                      <form id="admin-add-product-form" onSubmit={(event) => this.addNewProduct(event, product)}>
 
                         <label className="form-label"> Title: </label>
                         <input className="add-product-form-inputs" name="title" type="text" required placeholder="Product title" />

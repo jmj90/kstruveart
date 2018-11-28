@@ -1210,7 +1210,7 @@ note {
   text-shadow: 0px 2px 10px  black;
 }
 
-#5admintrue.disabled {
+#admintrue.disabled {
   z-index: -4;
 
 }
