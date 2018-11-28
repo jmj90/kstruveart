@@ -31,7 +31,7 @@
     "firebase": "^4.12.1",
     "firebase-admin": "^5.11.0",
     "history": "^4.6.3",
-    "morgan": "^1.8.1",
+    "morgan": "^1.9.1",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "pg": "^6.1.2",
@@ -71,12 +71,12 @@
     "husky": "^0.14.3",
     "lodash": "^4.17.4",
     "mocha": "^3.3.0",
-    "nodemon": "^1.12.1",
+    "nodemon": "^1.18.7",
     "react-test-renderer": "^16.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-mock-store": "^1.2.3",
     "supertest": "^3.0.0",
-    "webpack": "^4.0.1",
+    "webpack": "^4.26.1",
     "webpack-cli": "^2.0.9",
     "webpack-livereload-plugin": "^1.0.0"
   }
