@@ -16,24 +16,27 @@ export class Footer extends Component {
     const { isLoggedIn, handleClick } = this.props
   return (
     <div id="footer">
-          <div className="footer-nav">
+      <div className="footer-nav">
         <a href="/artists"  className="Nav-Item-Footer"> Artists </a>
         <a href="/allproducts" className="Nav-Item-Footer"> Artwork </a>
         <a href="/contact" className="Nav-Item-Footer"> Contact </a>
+        <a href="/privacy-policy" className="Nav-Item-Footer"> Policies </a>
         {
           isLoggedIn ? (
-            <div>
-              <a href="/" className="Nav-Item-Footer">Home</a>
+            <div id="user-nav">
+              <a href="/account-settings" className="Nav-Item-Footer">Account Settings</a>
               <a className="Nav-Item-Footer" href="#" onClick={handleClick}>
                 Logout
               </a>
             </div>
           ) : (
-            <Link to="/login" className="Nav-Item-Footer">Login</Link>
+            <div id="user-nav">
+              <Link to="/login" className="Nav-Item-Footer">Login</Link>
+            </div>
           )
         }
+        <a href="http://www.johnsonjake.com" id="Nav-Item-Admin-signature" rel="noopener noreferrer" target="_blank">site by jj.</a>
       </div>
-      <a href="http://www.johnsonjake.com" id="Nav-Item-Admin-signature">site by jj.</a>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import axios from 'axios'
 import { Button, Form, Message } from 'semantic-ui-react'
 import { updateUser } from '../store/user';
+import { Footer } from './Footer'
 
 
 class AccountForm extends Component {
@@ -47,6 +48,7 @@ class AccountForm extends Component {
               <button disabled id="password-save-button" className="edit-button" onClick={this.passwordUpdaterButton}>save</button>
             </div>
           </Form>
+        <Footer />
       </div>
     )
   }

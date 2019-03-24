@@ -13,24 +13,25 @@ import _ from 'lodash'
 
 
 class ProductDetail extends Component {
-
     constructor(props) {
       super(props);
       this.state = {
         selectedFile: 0,
         storageRef: 0,
-        isSoldToggle: 0
+        isSoldToggle: 0,
+        photoSet: null,
       }
       this.editProductDetails = this.editProductDetails.bind(this);
       this.removeProduct = this.removeProduct.bind(this)
       this.addToCart = this.addToCart.bind(this)
       this.uploadProductPhoto = this.uploadProductPhoto.bind(this)
       this.handleInputChange = this.handleInputChange.bind(this);
+      this.photoSetAdd = this.photoSetAdd.bind(this);
+      this.removeSubPhoto = this.removeSubPhoto.bind(this)
   }
 
   editProductImageForm() {
     return (
-       //=========== product image ===========
       <div id="image-edit-uploader-section">
           {
            this.props.user.isAdmin && this.props.product ?
@@ -47,13 +48,26 @@ class ProductDetail extends Component {
                     <Button color="green" id="fileButton" onClick={this.uploadProductPhoto}> Upload File </Button>
                   }
                 </div>
+                {
+                  this.state.selectedFile !== 0 ?
+                  <button id="secondary-button" onClick={this.photoSetAdd} >add to secondary photos</button>
+                  :
+                  <button id="secondary-button" onClick={this.photoSetAdd} disabled>add to secondary photos</button>
+                }
+                {
+                  this.state.photoSet !== null ? <p>photo added, please confirm changes below using the 'update product' button</p>
+                : <div />
+                }
                 </div>
                 :
               <div />
           }
+          <br />
         </div>
     )
   }
+
+  // click and utlitiy functions ===============================================
 
   convertToCM(h,w,l) {
     h = (h * 2.54).toFixed(2)
@@ -62,6 +76,38 @@ class ProductDetail extends Component {
     let converted  = `${h} x ${w} x ${l} cm`
     return (converted)
   }
+
+  photoSetAdd(img) {
+    let source = window.imageURLForProduct
+    this.setState({
+      photoSet: source
+    })
+    window.imageURLForProduct = window.currentImage
+    this.editProductDetails(event, this.props.product)
+  }
+
+  enterpressalert(e){
+    var code = e.keyCode || e.which
+    if (code == 13) {
+      document.getElementById("edit-product-desc").value = document.getElementById("edit-product-desc").value + '\n';
+    }
+  }
+
+  removeSubPhoto(idx, product){
+    let array = this.props.product.photoSet
+    array.splice(idx, 1)
+
+    const updatedproduct = Object.assign({}, product,
+      {
+        photoSet: array
+      }
+    )
+    this.props.updateProduct(updatedproduct);
+    window.location.reload()
+
+  }
+
+// FORMS =======================================================================
 
   editProductDetailsForm() {
     const {product} = this.props
@@ -78,11 +124,11 @@ class ProductDetail extends Component {
                   {
                     this.props.artist.filter(arty => arty.id === this.props.product.artistId)
                    .map(artyproduct =>
-                   <option selected="selected" disabled value={artyproduct.id}> {artyproduct.fullname} </option>
+                     <option selected="selected" disabled value={artyproduct.id}> {artyproduct.fullname} </option>
                    )
-                   }
+                 }
                  {
-                       artistArray.map(artist => <option key={artist.id} value={artist.id}>{artist.lastname}, {artist.firstname}</option>)
+                   artistArray.map(artist => <option key={artist.id} value={artist.id}>{artist.lastname}, {artist.firstname}</option>)
                  }
               </select>
 
@@ -94,6 +140,22 @@ class ProductDetail extends Component {
 
               <label>Media</label>
               <input className="add-product-form-inputs" name="media" type="text" defaultValue={product.media} />
+
+                  <label>Series</label>
+                  <select className="add-product-form-inputs" required name="series" type="text">
+                    {
+                      product.series ?
+                        <option selected>TRUE</option>
+                      :
+                        <option selected>FALSE</option>
+                    }
+                    {
+                      product.series ?
+                        <option>FALSE</option>
+                      :
+                        <option>TRUE</option>
+                    }
+                  </select>
 
               <label> Dimensions: (Height x Width x Depth)</label>
               <div id="dimensions-box">
@@ -134,9 +196,18 @@ class ProductDetail extends Component {
                 }
               </select>
 
+              <label>Photo Credit</label>
+              <input className="add-product-form-inputs" name="photoCredit" type="text" defaultValue={product.photoCredit} />
+
              <label>Image Url</label>
              <input name="photoURL" type="text" defaultValue={product.photo} />
 
+             <label>Sub Images Url</label>
+             {
+               product.photoSet.map((photo, idx) => (
+                 <input name="subphotoURL" type="text" defaultValue={product.photoSet[idx]} />
+                 ))
+           }
              <div className="edit-product-buttons">
                <Button color="blue" type="submit"> Update Product </Button>
                <Button color="red" onClick={this.removeProduct}> Remove Product </Button>
@@ -158,18 +229,17 @@ class ProductDetail extends Component {
         selectedFile: file,
         storageRef: fbStorageRef
       }))
-
     }
 
     uploadProductPhoto() {
       let file = this.state.selectedFile
       let storageRef = this.state.storageRef
-      let progressBar = document.getElementById('progressBar')
+      // let progressBar = document.getElementById('progressBar')
 
       storageRef.put(file).on('state_changed',
         function progress(snapshot) {
-          var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          progressBar.value = percentage
+          let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          // progressBar.value = percentage
           document.getElementById('progressPercent').innerHTML = percentage + '%'
         },
         function error(err) {
@@ -179,6 +249,7 @@ class ProductDetail extends Component {
         function complete(snapshot){
 
           console.log('Uploaded file!');
+          document.getElementById('secondary-button').classList.remove('disabled')
 
             storageRef.getDownloadURL()
               .then((url) => {
@@ -189,51 +260,83 @@ class ProductDetail extends Component {
                 console.error(error)
               })
           document.getElementById('progressPercent').innerHTML = 'Image successfully uploaded!'
-          document.getElementById('image-upload-box').classList.add('uploaded')
+          document.getElementById('image-upload-box3').classList.add('uploaded')
         })
 
     }
 
   // ========================================================================== //
 
-  enterpressalert(e){
-    var code = e.keyCode || e.which
-    if (code == 13) {
-      document.getElementById("edit-product-desc").value = document.getElementById("edit-product-desc").value + '\n';
-    }
-  }
-
   render() {
+    const {product, photoSet} = this.props
+    let photoArray;
     const numberWithCommas = (x) => {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    const {product} = this.props
+    if (product) {
+      photoArray = photoSet
+      window.currentImage = this.props.product.photo
+    }
 
     return (
       <div>
         <Nav />
         <div id="maincontent">
-          <div>
-              { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
-          </div>
+          { this.props.user.isAdmin ? <AdminToolbar /> : <div /> }
           <div className="single-product-view">
             {
               this.props.products.filter(product => product.id === this.props.product.id)
                 .map(product => (
                     <div className="current-product" key={product.id}>
-                      <img className="product-view-image" src={product.photo} onClick={() => window.location.assign(`${product.photo}`)} />
+                      {
+                        product.series ?
+
+                          <div className="product-view-series">
+                            <img className="product-view-image-series-main" src={product.photo} onClick={() => window.location.assign(`${product.photo}`)} />
+                            {
+                              product.photoSet.map((image, idx) => (
+                                <div>
+                                  <img src={image} className="thumbnail-image-series" onClick={() => window.location.assign(`${image}`)}/>
+                                  {
+                                    this.props.user.isAdmin ?
+                                    <div className="remove-button" onClick={() => this.removeSubPhoto(idx, product)}>X</div>
+                                    : <div/>
+                                }
+                              </div>
+                            ))
+                          }
+                      </div>
+                        :
+                        <div className="product-image-container">
+                        <img className="product-view-image" src={product.photo} onClick={() => window.location.assign(`${product.photo}`)} />
+                          <div className="product-view-secondary-images">
+                            {
+                              product.photoSet.map((image, idx) => (
+                                <div>
+                                  <img src={image} className="thumbnail-image" onClick={() => window.location.assign(`${image}`)}/>
+                                  {
+                                    this.props.user.isAdmin ?
+                                    <div className="remove-button" onClick={() => this.removeSubPhoto(idx, product)}>X</div>
+                                    : <div/>
+                                }
+                              </div>
+                            ))
+                          }
+                        </div>
+                      </div>
+                    }
+                    <div className="photo-credit">photo credit: {product.photoCredit}</div>
                       <div className="product-view-info">
                           {
                             this.props.product ?
                             this.props.artist.filter(singleArtist => product.artistId === singleArtist.id)
-                            .map(artist => (
-                              <div id="product-artist-container">
+                            .map(artist =>
+                              ( <div id="product-artist-container">
                                 <NavLink to={`/artists/${artist.id}`}>
                                 <div id="artist-name-link">{artist.fullname}</div>
                                 </NavLink>
                                 <div id="birthdeathyears">({artist.lifeSpan})</div>
-                              </div>
-                              )
+                              </div> )
                             )
                             : <div />
                           }
@@ -324,25 +427,34 @@ class ProductDetail extends Component {
   // ========= Admin: Edit Product ========= \\
   editProductDetails(event, product) {
     event.preventDefault();
-    // var textarea = document.forms[0].desc.value
-    // textarea = textarea.replace(/\r?\n/g, '<br />');
+    let updatedPhotoSet
+    if (this.state.photoSet !== null){
+      updatedPhotoSet = this.props.product.photoSet
+      updatedPhotoSet.push(this.state.photoSet)
+    } else {
+      updatedPhotoSet = this.props.product.photoSet
+    }
+
     const updatedproduct = Object.assign({}, product,
       {
         id: this.props.product.id,
         title: event.target.title.value,
         artistId: event.target.artistId.value,
+        series: event.target.series.value,
         year: event.target.year.value,
         media: event.target.media.value,
         height: event.target.height.value,
         width: event.target.width.value,
         length: event.target.length.value,
         inventoryId: event.target.inventoryId.value,
+        photoCredit: event.target.photoCredit.value,
         price: (event.target.price.value * 100),
         edition: event.target.edition.value,
         description: event.target.desc.value,
         producttype: event.target.producttype.value,
         isSold: event.target.isSoldSelect.value,
-        photo: window.imageURLForProduct
+        photo: window.imageURLForProduct,
+        photoSet: updatedPhotoSet
       }
     )
     this.props.updateProduct(updatedproduct);

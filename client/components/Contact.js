@@ -33,6 +33,7 @@ class Contact extends Component {
                 <div id="footer-address"> [visits by appointment only] </div>
                 <a href="mailto:keith@kstruve.com?subject=STRUVE FINE ART : General Contact">keith[at]kstruve.com</a>
                 <div> 312.560.4634 </div>
+                <br />
               </div>
               </div>
             </div>

@@ -22,7 +22,8 @@ import {
   AdminProductQuicklist,
   ResetPassword,
   ArtistsBlockList,
-  Home
+  Home,
+  Privacy
 } from './components'
 import SearchBar from './components/search'
 import { me, fetchArtists, fetchCategories, fetchProducts} from './store'
@@ -59,6 +60,7 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/category/:id" component={Category} />
+        <Route exact path="/privacy-policy" component={Privacy} />
         <Route exact path="/reset-password" component={ResetPassword} />
         {
           isLoggedIn &&

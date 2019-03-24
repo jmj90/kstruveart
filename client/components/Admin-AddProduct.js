@@ -107,6 +107,7 @@ handleInputChange(event) {
         artistId: event.target.artistSelect.value,
         year: event.target.year.value,
         media: event.target.media.value,
+        series: event.target.series.value,
         height: event.target.height.value,
         width: event.target.width.value,
         length: event.target.length.value,
@@ -170,6 +171,12 @@ handleInputChange(event) {
 
                         <label className="form-label"> Media: </label>
                         <input className="add-product-form-inputs" name="media" type="text" placeholder="Media Type" />
+
+                        <label className="form-label"> Series: </label>
+                          <select className="add-product-form-inputs" required name="series" type="text">
+                            <option value="false">false</option>
+                            <option value="true">true</option>
+                          </select>
 
                         <label className="form-label"> Dimensions: (Height x Width x Depth) </label>
                         <note>* if there is no height, width, or depth to an item, enter 0 as the value</note>

@@ -9,6 +9,10 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     defaultValue: '/images/defaultimage.png'
   },
+  photoSet: {
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+    defaultValue: []
+  },
   description: {
     type: Sequelize.TEXT
   },
@@ -35,6 +39,13 @@ const Product = db.define('product', {
   },
   edition: {
     type: Sequelize.STRING
+  },
+  photoCredit: {
+    type: Sequelize.STRING
+  },
+  series: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
   isSold: {
     type: Sequelize.BOOLEAN,
