@@ -28,6 +28,7 @@ constructor() {
 
 componentDidMount() {
   this.imageUrl = false
+  window.scrollTo(0, 0)
 }
 
 // ==================== I M A G E  U P L O A D E R ==================== //

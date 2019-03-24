@@ -20,6 +20,7 @@ class ProductDetail extends Component {
         storageRef: 0,
         isSoldToggle: 0,
         photoSet: null,
+        photoUploaded: false,
       }
       this.editProductDetails = this.editProductDetails.bind(this);
       this.removeProduct = this.removeProduct.bind(this)
@@ -28,6 +29,10 @@ class ProductDetail extends Component {
       this.handleInputChange = this.handleInputChange.bind(this);
       this.photoSetAdd = this.photoSetAdd.bind(this);
       this.removeSubPhoto = this.removeSubPhoto.bind(this)
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 0)
   }
 
   editProductImageForm() {
@@ -49,13 +54,13 @@ class ProductDetail extends Component {
                   }
                 </div>
                 {
-                  this.state.selectedFile !== 0 ?
+                  this.state.photoUploaded !== false ?
                   <button id="secondary-button" onClick={this.photoSetAdd} >add to secondary photos</button>
                   :
                   <button id="secondary-button" onClick={this.photoSetAdd} disabled>add to secondary photos</button>
                 }
                 {
-                  this.state.photoSet !== null ? <p>photo added, please confirm changes below using the 'update product' button</p>
+                  this.state.photoSet !== null ? <div id="notice">photo added, please confirm changes below using the 'update product' button</div>
                 : <div />
                 }
                 </div>
@@ -77,13 +82,12 @@ class ProductDetail extends Component {
     return (converted)
   }
 
-  photoSetAdd(img) {
+  photoSetAdd() {
     let source = window.imageURLForProduct
     this.setState({
       photoSet: source
     })
     window.imageURLForProduct = window.currentImage
-    this.editProductDetails(event, this.props.product)
   }
 
   enterpressalert(e){
@@ -261,8 +265,11 @@ class ProductDetail extends Component {
               })
           document.getElementById('progressPercent').innerHTML = 'Image successfully uploaded!'
           document.getElementById('image-upload-box3').classList.add('uploaded')
-        })
 
+        })
+        this.setState({
+          photoUploaded: true
+        })
     }
 
   // ========================================================================== //

@@ -14,6 +14,7 @@ class SingleProduct extends Component {
 
   componentDidMount() {
     this.innitalState()
+      window.scrollTo(0, 0)
   }
 
   innitalState = () => this.setState({ pressValue: true})

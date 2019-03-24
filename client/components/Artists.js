@@ -29,6 +29,10 @@ class Artists extends Component {
     }, 5500)
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   getArtists(categoryId) {
     const {artist, artistStyleCategoryId } = this.props
     let artistList = this.props.artist

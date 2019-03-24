@@ -30,6 +30,10 @@ class ArtistDetail extends Component {
       this.uploadStylePhoto = this.uploadStylePhoto.bind(this);
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0)
+  }
+
   // ==================== I M A G E  U P L O A D E R ==================== //
 
     fileSelectHandler = event => {
